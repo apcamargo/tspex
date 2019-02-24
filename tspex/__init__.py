@@ -1,0 +1,1 @@
+from tspex.core.specificity_class import TissueSpecificity
