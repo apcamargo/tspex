@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 
 from tspex.core.specificity_functions import (counts, gini, js_specificity,
@@ -22,8 +23,11 @@ func_dictionary = {
 }
 
 class TissueSpecificity:
-    def __init__(self, expression_data, method, **kwargs):
-        self.expression_data = expression_data.astype('float')
+    def __init__(self, expression_data, method, log=False, **kwargs):
+        if log == True:
+            self.expression_data = expression_data.astype('float').apply(lambda x: np.log(x+1))
+        else:
+            self.expression_data = expression_data.astype('float')
         self._method = str(method)
         self._transform = kwargs.pop('transform', True)
         self._threshold = kwargs.pop('threshold', 0)
