@@ -27,10 +27,8 @@ class TissueSpecificity:
         if log == True:
             self.expression_data = expression_data.astype('float')
             self.expression_data = self.expression_data.apply(lambda x: np.log(x+1))
-            self.expression_data = self.expression_data.round(4)
         else:
             self.expression_data = expression_data.astype('float')
-            self.expression_data = self.expression_data.round(4)
         self._method = str(method)
         self._transform = kwargs.pop('transform', True)
         self._threshold = kwargs.pop('threshold', 0)
@@ -45,6 +43,7 @@ class TissueSpecificity:
             tissue_specificity = self.expression_data.apply(func, axis=1, result_type='reduce',
                                                             transform=self._transform,
                                                             threshold=self._threshold)
+        tissue_specificity = tissue_specificity.round(4)
         return tissue_specificity
 
     def to_file(self, filename):
