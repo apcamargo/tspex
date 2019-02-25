@@ -6,10 +6,10 @@ def dpm(vector):
     dpm = np.std(vector, ddof=1) * np.sqrt(n)
     return dpm
 
-def tukey_biweight(vector, c=5):
+def tukey_biweight(vector, c=5, epsilon=1e-4):
     m = np.median(vector)
     s = np.median(np.abs(vector-m))
-    u = (vector-m) / ((c*s)+1e-4)
+    u = (vector-m) / ((c*s)+epsilon)
     mask = (np.abs(u) > 1)
     w = (1-u**2) ** 2
     w[mask] = 0
