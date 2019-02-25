@@ -24,7 +24,7 @@ func_dictionary = {
 
 class TissueSpecificity:
     def __init__(self, expression_data, method, log=False, **kwargs):
-        if log == True:
+        if log:
             self.expression_data = expression_data.astype('float')
             self.expression_data = self.expression_data.apply(lambda x: np.log(x+1))
         else:
