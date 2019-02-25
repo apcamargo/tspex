@@ -41,7 +41,7 @@ def gini(vector, **kwargs):
         n = len(vector)
         index = np.arange(1, n+1)
         gini = (np.sum((2*index-n-1)*vector)) / (n*np.sum(vector))
-        if transform == True:
+        if transform:
             transformed_gini = gini * (n/(n-1))
             return transformed_gini
         else:
@@ -54,7 +54,7 @@ def simpson(vector, **kwargs):
     else:
         p = vector / np.sum(vector)
         simpson = np.sum(p**2)
-        if transform == True:
+        if transform:
             min_simpson = 1 / len(vector)
             transformed_simpson = (simpson-min_simpson) / (1-min_simpson)
             return transformed_simpson
@@ -68,7 +68,7 @@ def shannon_specificity(vector, **kwargs):
     else:
         n = len(vector)
         shannon_specificity = np.log2(n) - entropy(vector)
-        if transform == True:
+        if transform:
             shannon_specificity_transformed = shannon_specificity / np.log2(n)
             return shannon_specificity_transformed
         else:
@@ -81,7 +81,7 @@ def roku_specificity(vector, **kwargs):
     else:
         n = len(vector)
         roku_specificity = np.log2(n) - roku(vector)
-        if transform == True:
+        if transform:
             roku_specificity_transformed = roku_specificity / np.log2(n)
             return roku_specificity_transformed
         else:
@@ -95,7 +95,7 @@ def zscore(vector, **kwargs):
         return np.zeros(n)
     else:
         zscore = (vector-np.mean(vector)) / std
-        if transform == True:
+        if transform:
             max_zscore = (n-1) / np.sqrt(n)
             zscore_transformed = (zscore+max_zscore) / (2*max_zscore)
             return zscore_transformed
