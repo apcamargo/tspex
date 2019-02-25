@@ -25,9 +25,12 @@ func_dictionary = {
 class TissueSpecificity:
     def __init__(self, expression_data, method, log=False, **kwargs):
         if log == True:
-            self.expression_data = expression_data.astype('float').apply(lambda x: np.log(x+1))
+            self.expression_data = expression_data.astype('float')
+            self.expression_data = self.expression_data.apply(lambda x: np.log(x+1))
+            self.expression_data = self.expression_data.round(4)
         else:
             self.expression_data = expression_data.astype('float')
+            self.expression_data = self.expression_data.round(4)
         self._method = str(method)
         self._transform = kwargs.pop('transform', True)
         self._threshold = kwargs.pop('threshold', 0)
