@@ -9,7 +9,7 @@ def counts(vector, **kwargs):
     if n <= 1:
         return 0.0
     else:
-        counts = np.sum(vector>=threshold)
+        counts = np.sum(vector >= threshold)
         if counts == 0:
             return 0.0
         else:
