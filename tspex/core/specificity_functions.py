@@ -9,19 +9,19 @@ def counts(vector, **kwargs):
     if n <= 1:
         return 0.0
     else:
-        counts = np.sum(vector >= threshold)
-        if counts == 0:
+        cts = np.sum(vector >= threshold)
+        if cts == 0:
             return 0.0
         else:
-            counts_transformed = (1-(counts/n)) * (n/(n-1))
-            return counts_transformed
+            cts_transformed = (1-(cts/n)) * (n/(n-1))
+            return cts_transformed
 
 def tsi(vector, **kwargs):
     if not np.any(vector):
         return 0.0
     else:
-        tsi = max(vector) / np.sum(vector)
-        return tsi
+        tissue_specificity_index = max(vector) / np.sum(vector)
+        return tissue_specificity_index
 
 def tau(vector, **kwargs):
     if not np.any(vector):
@@ -29,8 +29,8 @@ def tau(vector, **kwargs):
     else:
         n = len(vector)
         vector_r = vector / np.max(vector)
-        tau = np.sum(1-vector_r) / (n-1)
-        return tau
+        tau_index = np.sum(1-vector_r) / (n-1)
+        return tau_index
 
 def gini(vector, **kwargs):
     transform = kwargs.pop('transform', True)
@@ -40,12 +40,12 @@ def gini(vector, **kwargs):
         vector = np.sort(vector)
         n = len(vector)
         index = np.arange(1, n+1)
-        gini = (np.sum((2*index-n-1)*vector)) / (n*np.sum(vector))
+        gini_coefficient = (np.sum((2*index-n-1)*vector)) / (n*np.sum(vector))
         if transform:
-            transformed_gini = gini * (n/(n-1))
-            return transformed_gini
+            transformed_gini_coefficient = gini_coefficient * (n/(n-1))
+            return transformed_gini_coefficient
         else:
-            return gini
+            return gini_coefficient
 
 def simpson(vector, **kwargs):
     transform = kwargs.pop('transform', True)
@@ -53,13 +53,13 @@ def simpson(vector, **kwargs):
         return 0.0
     else:
         p = vector / np.sum(vector)
-        simpson = np.sum(p**2)
+        simpson_index = np.sum(p**2)
         if transform:
             min_simpson = 1 / len(vector)
-            transformed_simpson = (simpson-min_simpson) / (1-min_simpson)
-            return transformed_simpson
+            transformed_simpson_index = (simpson_index-min_simpson) / (1-min_simpson)
+            return transformed_simpson_index
         else:
-            return simpson
+            return simpson_index
 
 def shannon_specificity(vector, **kwargs):
     transform = kwargs.pop('transform', True)
@@ -67,12 +67,12 @@ def shannon_specificity(vector, **kwargs):
         return 0.0
     else:
         n = len(vector)
-        shannon_specificity = np.log2(n) - entropy(vector)
+        ss = np.log2(n) - entropy(vector)
         if transform:
-            shannon_specificity_transformed = shannon_specificity / np.log2(n)
-            return shannon_specificity_transformed
+            ss_transformed = ss / np.log2(n)
+            return ss_transformed
         else:
-            return shannon_specificity
+            return ss
 
 def roku_specificity(vector, **kwargs):
     transform = kwargs.pop('transform', True)
@@ -80,12 +80,12 @@ def roku_specificity(vector, **kwargs):
         return 0.0
     else:
         n = len(vector)
-        roku_specificity = np.log2(n) - roku(vector)
+        rs = np.log2(n) - roku(vector)
         if transform:
-            roku_specificity_transformed = roku_specificity / np.log2(n)
-            return roku_specificity_transformed
+            rs_transformed = rs / np.log2(n)
+            return rs_transformed
         else:
-            return roku_specificity
+            return rs
 
 def zscore(vector, **kwargs):
     transform = kwargs.pop('transform', True)
@@ -94,13 +94,13 @@ def zscore(vector, **kwargs):
     if std == 0:
         return np.zeros(n)
     else:
-        zscore = (vector-np.mean(vector)) / std
+        zs = (vector-np.mean(vector)) / std
         if transform:
-            max_zscore = (n-1) / np.sqrt(n)
-            zscore_transformed = (zscore+max_zscore) / (2*max_zscore)
-            return zscore_transformed
+            max_zs = (n-1) / np.sqrt(n)
+            zs_transformed = (zs+max_zs) / (2*max_zs)
+            return zs_transformed
         else:
-            return zscore
+            return zs
 
 def spm(vector, **kwargs):
     n = len(vector)
@@ -117,8 +117,8 @@ def spm(vector, **kwargs):
 
 def spm_dpm(vector, **kwargs):
     spm_vector = spm(vector)
-    spm_dpm = dpm(spm_vector)
-    return spm_dpm
+    spm_dispersion = dpm(spm_vector)
+    return spm_dispersion
 
 def js_specificity(vector, **kwargs):
     n = len(vector)
@@ -135,5 +135,5 @@ def js_specificity(vector, **kwargs):
 
 def js_specificity_dpm(vector, **kwargs):
     js_vector = js_specificity(vector)
-    js_specificity_dpm = dpm(js_vector)
-    return js_specificity_dpm
+    js_specificity_dispersion = dpm(js_vector)
+    return js_specificity_dispersion
