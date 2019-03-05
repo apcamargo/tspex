@@ -13,7 +13,7 @@ setup(
     author='Antonio Pedro Camargo',
     author_email='antoniop.camargo@gmail.com',
     classifiers=[
-        'Development Status :: ',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Science/Research',
         'Natural Language :: English',
         'Topic :: Software Development :: Libraries',
