@@ -107,8 +107,7 @@ class TissueSpecificity:
         tissue_specificity = tissue_specificity.round(4)
         return tissue_specificity
 
-
-    def histogram(self, bins=50, size=(7,4), dpi=100):
+    def plot_histogram(self, bins=50, size=(7, 4), dpi=100):
         """
         Plot a histogram of the tissue-specificity values. If the chosen metric
         is one of 'zscore', 'spm' or 'js_specificity', the maximum row value is used
@@ -135,7 +134,7 @@ class TissueSpecificity:
             ax.set_xlabel(self._method)
             ax.set_title('Histogram of {} values'.format(self._method), loc='left')
 
-    def heatmap(self, threshold, size=(5, 5), dpi=100):
+    def plot_heatmap(self, threshold, size=(7, 4), dpi=100):
         """
         Plot a heatmap of gene expression values, given a tissue-specificity threshold.
         The threshold should be in the [0,1] range.
@@ -146,7 +145,7 @@ class TissueSpecificity:
         ----------
         threshold : float, default None
             Threshold of gene tissue-specificity.
-        size : tuple, default (5,5)
+        size : tuple, default (7,4)
             Size of the figure.
         dpi : int, default 100
             The resolution in dots per inch.
