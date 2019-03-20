@@ -31,7 +31,7 @@ setup(
     description='A Python package for calculating tissue-specificity metrics for gene expression.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    install_requires=['matplotlib', 'numpy', 'pandas >= 0.23'],
+    install_requires=['matplotlib >= 2.2', 'numpy', 'pandas >= 0.23'],
     python_requires= '>=3',
     url='https://github.com/apcamargo/tspex',
     keywords=['bioinformatics', 'gene expression', 'tissue-specificity', 'transcriptomics'],
