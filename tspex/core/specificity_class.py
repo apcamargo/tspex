@@ -157,7 +157,7 @@ class TissueSpecificity:
             ts_data = self.tissue_specificity
         expr_data = self.expression_data.loc[ts_data >= threshold]
         fig, ax = plt.subplots(figsize=size, dpi=dpi, constrained_layout=True)
-        im = ax.imshow(expr_data, cmap="viridis")
+        im = ax.imshow(expr_data, cmap='viridis', aspect='auto')
         ax.set_ylabel('Genes')
         ax.set_xlabel('Tissues')
         plt.yticks(np.arange(0, len(expr_data.index), 1), expr_data.index)
