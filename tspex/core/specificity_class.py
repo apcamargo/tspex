@@ -128,7 +128,7 @@ class TissueSpecificity:
                 data = self.tissue_specificity.max(axis=1).values
             else:
                 data = self.tissue_specificity.values
-            fig, ax = plt.subplots(figsize=size, dpi=dpi)
+            fig, ax = plt.subplots(figsize=size, dpi=dpi, constrained_layout=True)
             ax.hist(data, bins=bins, alpha=0.85, color='#262626')
             ax.set_ylabel('Number of genes')
             ax.set_xlabel(self._method)
