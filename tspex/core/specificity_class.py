@@ -108,7 +108,7 @@ class TissueSpecificity:
         return tissue_specificity
 
 
-    def tspex_plot(self, bins=30, size=(7,4), dpi=100):
+    def histogram(self, bins=50, size=(7,4), dpi=100):
         """
         Plot a histogram of the tissue-specificity values. If the chosen metric
         is one of 'zscore', 'spm' or 'js_specificity', the maximum row value is used
@@ -116,7 +116,7 @@ class TissueSpecificity:
 
         Parameters
         ----------
-        bins : int, default 30
+        bins : int, default 50
             Number of bins in the histogram.
         size : tuple, default (7,4)
             Size of the figure.
