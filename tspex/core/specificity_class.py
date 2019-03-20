@@ -160,13 +160,16 @@ class TissueSpecificity:
         im = ax.imshow(expr_data, cmap='viridis', aspect='auto')
         ax.set_ylabel('Genes')
         ax.set_xlabel('Tissues')
-        plt.yticks(np.arange(0, len(expr_data.index), 1), expr_data.index)
-        plt.xticks(np.arange(0, len(expr_data.columns), 1), expr_data.columns)
-        plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
-        cbar = plt.colorbar(im, ax=ax)
-        cbar.ax.set_ylabel(ylabel="Expression", rotation=-90, va="bottom")
-        plt.show()
-						
+        ax.set_yticks(np.arange(0, len(expr_data.index), 1))
+        ax.set_yticklabels(expr_data.index)
+        ax.set_xticks(np.arange(0, len(expr_data.columns), 1))
+        ax.set_xticklabels(expr_data.columns)
+        ax.tick_params(length=0)
+        ax.tick_params(axis='x', rotation=45)
+        cbar = fig.colorbar(im, ax=ax, pad=0.005, aspect=30)
+        cbar.ax.set_ylabel(ylabel='Expression', rotation=-90, va='bottom')
+        cbar.ax.tick_params(length=0)
+
     def to_file(self, filename):
         """
         Write the tissue-specificity values into a tab-separated values (tsv)
