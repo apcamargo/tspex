@@ -135,7 +135,39 @@ class TissueSpecificity:
             ax.set_xlabel(self._method)
             ax.set_title('Histogram of {} values'.format(self._method), loc='left')
 
+    def heatmap(self, threshold, size=(5, 5), dpi=100):
+        """
+        Plot a heatmap of gene expression values, given a tissue-specificity threshold.
+        The threshold should be in the [0,1] range.
+        If the chosen metric is one of 'zscore', 'spm' or 'js_specificity', the maximum row value
+        is used as a representative of the gene tissue-specificity.
 
+        Parameters
+        ----------
+        threshold : float, default None
+            Threshold of gene tissue-specificity.
+        size : tuple, default (5,5)
+            Size of the figure.
+        dpi : int, default 100
+            The resolution in dots per inch.
+        """
+
+        if self._method in ['zscore', 'spm', 'js_specificity']:
+            ts_data = self.tissue_specificity.max(axis=1)
+        else:
+            ts_data = self.tissue_specificity
+        expr_data = self.expression_data.loc[ts_data >= threshold]
+        fig, ax = plt.subplots(figsize=size, dpi=dpi, constrained_layout=True)
+        im = ax.imshow(expr_data, cmap="viridis")
+        ax.set_ylabel('Genes')
+        ax.set_xlabel('Tissues')
+        plt.yticks(np.arange(0, len(expr_data.index), 1), expr_data.index)
+        plt.xticks(np.arange(0, len(expr_data.columns), 1), expr_data.columns)
+        plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+        cbar = plt.colorbar(im, ax=ax)
+        cbar.ax.set_ylabel(ylabel="Expression", rotation=-90, va="bottom")
+        plt.show()
+						
     def to_file(self, filename):
         """
         Write the tissue-specificity values into a tab-separated values (tsv)
