@@ -87,11 +87,11 @@ class TissueSpecificity:
             'js_specificity': js_specificity,
             'js_specificity_dpm': js_specificity_dpm
         }
+        self.expression_data = expression_data.astype('float')
+        if np.any(self.expression_data < 0):
+            raise ValueError('Negative expression values are not allowed.')
         if log:
-            self.expression_data = expression_data.astype('float')
             self.expression_data = self.expression_data.apply(lambda x: np.log(x+1))
-        else:
-            self.expression_data = expression_data.astype('float')
         self._method = str(method)
         self._transform = kwargs.pop('transform', True)
         self._threshold = kwargs.pop('threshold', 0)
