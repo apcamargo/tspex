@@ -134,7 +134,8 @@ class TissueSpecificity:
             ax.set_xlabel(self._method)
             ax.set_title('Histogram of {} values'.format(self._method), loc='left')
 
-    def plot_heatmap(self, threshold, gene_names=True, tissue_names=True, size=(7, 4), dpi=100):
+    def plot_heatmap(self, threshold, use_zscore=False, gene_names=True,
+                     tissue_names=True, cmap='viridis', size=(7, 4), dpi=100):
         """
         Plot a heatmap of the expression of genes with tissue-specificity over a
         given a threshold. The threshold should be in the [0,1] range. If the
@@ -145,10 +146,14 @@ class TissueSpecificity:
         ----------
         threshold : float, default None
             Tissue-specificity threshold.
+        use_zscore : bool, default False
+            Use expression z-score instead of the raw values.
         gene_names : bool, default True
             Show gene names in the y-axis.
         tissue_names : bool, default True
             Show tissue names in the x-axis.
+        cmap : str or matplotlib.colors.Colormap, default 'viridis'
+            Colormap to use in the heatmap.
         size : tuple, default (7,4)
             Size of the figure.
         dpi : int, default 100
@@ -160,8 +165,10 @@ class TissueSpecificity:
         else:
             ts_data = self.tissue_specificity
         expr_data = self.expression_data.loc[ts_data >= threshold]
+        if use_zscore:
+            expr_data = expr_data.apply(zscore, axis=1, result_type='broadcast', transform=False)
         fig, ax = plt.subplots(figsize=size, dpi=dpi, constrained_layout=True)
-        im = ax.imshow(expr_data, cmap='viridis', aspect='auto')
+        im = ax.imshow(expr_data, cmap=cmap, aspect='auto')
         ax.set_ylabel('Genes')
         ax.set_xlabel('Tissues')
         ax.set_yticks(np.arange(0, len(expr_data.index), 1))
@@ -175,7 +182,10 @@ class TissueSpecificity:
         if not tissue_names:
             ax.tick_params(labelbottom=False)
         cbar = fig.colorbar(im, ax=ax, pad=0.005, aspect=30)
-        cbar.ax.set_ylabel(ylabel='Expression', rotation=-90, va='bottom')
+        if use_zscore:
+            cbar.ax.set_ylabel(ylabel='Expression (z-score)', rotation=-90, va='bottom')
+        else:
+            cbar.ax.set_ylabel(ylabel='Expression', rotation=-90, va='bottom')
         cbar.ax.tick_params(length=0)
 
     def to_file(self, filename):
