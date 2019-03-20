@@ -134,17 +134,21 @@ class TissueSpecificity:
             ax.set_xlabel(self._method)
             ax.set_title('Histogram of {} values'.format(self._method), loc='left')
 
-    def plot_heatmap(self, threshold, size=(7, 4), dpi=100):
+    def plot_heatmap(self, threshold, gene_names=True, tissue_names=True, size=(7, 4), dpi=100):
         """
-        Plot a heatmap of gene expression values, given a tissue-specificity threshold.
-        The threshold should be in the [0,1] range.
-        If the chosen metric is one of 'zscore', 'spm' or 'js_specificity', the maximum row value
-        is used as a representative of the gene tissue-specificity.
+        Plot a heatmap of the expression of genes with tissue-specificity over a
+        given a threshold. The threshold should be in the [0,1] range. If the
+        chosen metric is one of 'zscore', 'spm' or 'js_specificity', the maximum
+        row value is used as a representative of the gene tissue-specificity.
 
         Parameters
         ----------
         threshold : float, default None
-            Threshold of gene tissue-specificity.
+            Tissue-specificity threshold.
+        gene_names : bool, default True
+            Show gene names in the y-axis.
+        tissue_names : bool, default True
+            Show tissue names in the x-axis.
         size : tuple, default (7,4)
             Size of the figure.
         dpi : int, default 100
@@ -166,6 +170,10 @@ class TissueSpecificity:
         ax.set_xticklabels(expr_data.columns)
         ax.tick_params(length=0)
         ax.tick_params(axis='x', rotation=45)
+        if not gene_names:
+            ax.tick_params(labelleft=False)
+        if not tissue_names:
+            ax.tick_params(labelbottom=False)
         cbar = fig.colorbar(im, ax=ax, pad=0.005, aspect=30)
         cbar.ax.set_ylabel(ylabel='Expression', rotation=-90, va='bottom')
         cbar.ax.tick_params(length=0)
