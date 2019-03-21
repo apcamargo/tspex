@@ -5,7 +5,8 @@ tspex is a Python package for calculating tissue-specificity metrics from gene e
 tspex features include:
   - An easy-to-use object-oriented interface.
   - Twelve different tissue-specificity metrics.
-  - A plotting function.
+  - Integration with pandas.
+  - Graphing functions.
   - Support for Jupyter notebooks.
 
 ## Installation

@@ -22,6 +22,8 @@
 TissueSpecificity class of the tspex library.
 """
 
+import warnings
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -85,11 +87,11 @@ class TissueSpecificity:
             'js_specificity': js_specificity,
             'js_specificity_dpm': js_specificity_dpm
         }
+        self.expression_data = expression_data.astype('float')
+        if np.any(self.expression_data < 0):
+            raise ValueError('Negative expression values are not allowed.')
         if log:
-            self.expression_data = expression_data.astype('float')
             self.expression_data = self.expression_data.apply(lambda x: np.log(x+1))
-        else:
-            self.expression_data = expression_data.astype('float')
         self._method = str(method)
         self._transform = kwargs.pop('transform', True)
         self._threshold = kwargs.pop('threshold', 0)
@@ -107,8 +109,7 @@ class TissueSpecificity:
         tissue_specificity = tissue_specificity.round(4)
         return tissue_specificity
 
-
-    def tspex_plot(self, bins=30, size=(7,4), dpi=100):
+    def plot_histogram(self, bins=50, size=(7, 4), dpi=100):
         """
         Plot a histogram of the tissue-specificity values. If the chosen metric
         is one of 'zscore', 'spm' or 'js_specificity', the maximum row value is used
@@ -116,7 +117,7 @@ class TissueSpecificity:
 
         Parameters
         ----------
-        bins : int, default 30
+        bins : int, default 50
             Number of bins in the histogram.
         size : tuple, default (7,4)
             Size of the figure.
@@ -129,25 +130,68 @@ class TissueSpecificity:
                 data = self.tissue_specificity.max(axis=1).values
             else:
                 data = self.tissue_specificity.values
-            fig, ax = plt.subplots(figsize=size, dpi=dpi)
+            fig, ax = plt.subplots(figsize=size, dpi=dpi, constrained_layout=True)
             ax.hist(data, bins=bins, alpha=0.85, color='#262626')
             ax.set_ylabel('Number of genes')
             ax.set_xlabel(self._method)
             ax.set_title('Histogram of {} values'.format(self._method), loc='left')
 
-
-    def to_file(self, filename):
+    def plot_heatmap(self, threshold, use_zscore=False, gene_names=True,
+                     tissue_names=True, cmap='viridis', size=(7, 4), dpi=100):
         """
-        Write the tissue-specificity values into a tab-separated values (tsv)
-        file.
+        Plot a heatmap of the expression of genes with tissue-specificity over a
+        given a threshold. The threshold should be in the [0,1] range. If the
+        chosen metric is one of 'zscore', 'spm' or 'js_specificity', the maximum
+        row value is used as a representative of the gene tissue-specificity.
 
         Parameters
         ----------
-        filename : str
-            A string containing a path to a filename.
+        threshold : float, default None
+            Tissue-specificity threshold.
+        use_zscore : bool, default False
+            Use expression z-score instead of the raw values.
+        gene_names : bool, default True
+            Show gene names in the y-axis.
+        tissue_names : bool, default True
+            Show tissue names in the x-axis.
+        cmap : str or matplotlib.colors.Colormap, default 'viridis'
+            Colormap to use in the heatmap.
+        size : tuple, default (7,4)
+            Size of the figure.
+        dpi : int, default 100
+            The resolution in dots per inch.
         """
 
-        self.tissue_specificity.to_csv(filename, sep='\t')
+        if self._method in ['zscore', 'spm', 'js_specificity']:
+            ts_data = self.tissue_specificity.max(axis=1)
+        else:
+            ts_data = self.tissue_specificity
+        expr_data = self.expression_data.loc[ts_data >= threshold]
+        if not len(expr_data):
+            warnings.warn('There is no gene with tissue-specificity value above the threshold.')
+            return None
+        if use_zscore:
+            expr_data = expr_data.apply(zscore, axis=1, result_type='broadcast', transform=False)
+        fig, ax = plt.subplots(figsize=size, dpi=dpi, constrained_layout=True)
+        im = ax.imshow(expr_data, cmap=cmap, aspect='auto')
+        ax.set_ylabel('Genes')
+        ax.set_xlabel('Tissues')
+        ax.set_yticks(np.arange(0, len(expr_data.index), 1))
+        ax.set_yticklabels(expr_data.index)
+        ax.set_xticks(np.arange(0, len(expr_data.columns), 1))
+        ax.set_xticklabels(expr_data.columns)
+        ax.tick_params(length=0)
+        ax.tick_params(axis='x', rotation=45)
+        if not gene_names:
+            ax.tick_params(labelleft=False)
+        if not tissue_names:
+            ax.tick_params(labelbottom=False)
+        cbar = fig.colorbar(im, ax=ax, pad=0.005, aspect=30)
+        if use_zscore:
+            cbar.ax.set_ylabel(ylabel='Expression (z-score)', rotation=-90, va='bottom')
+        else:
+            cbar.ax.set_ylabel(ylabel='Expression', rotation=-90, va='bottom')
+        cbar.ax.tick_params(length=0)
 
     def _repr_html_(self):
         if isinstance(self.tissue_specificity, pd.core.frame.DataFrame):
