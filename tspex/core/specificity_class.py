@@ -193,19 +193,6 @@ class TissueSpecificity:
             cbar.ax.set_ylabel(ylabel='Expression', rotation=-90, va='bottom')
         cbar.ax.tick_params(length=0)
 
-    def to_file(self, filename):
-        """
-        Write the tissue-specificity values into a tab-separated values (tsv)
-        file.
-
-        Parameters
-        ----------
-        filename : str
-            A string containing a path to a filename.
-        """
-
-        self.tissue_specificity.to_csv(filename, sep='\t')
-
     def _repr_html_(self):
         if isinstance(self.tissue_specificity, pd.core.frame.DataFrame):
             return self.tissue_specificity._repr_html_()
