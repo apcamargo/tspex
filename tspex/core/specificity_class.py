@@ -167,10 +167,11 @@ class TissueSpecificity:
         else:
             ts_data = self.tissue_specificity
         expr_data = self.expression_data.loc[ts_data >= threshold]
+        if not len(expr_data):
+            warnings.warn('There is no gene with tissue-specificity value above the threshold.')
+            return None
         if use_zscore:
             expr_data = expr_data.apply(zscore, axis=1, result_type='broadcast', transform=False)
-        if not len(expr_data):
-            warnings.warn('There is no gene with tissue-specificity value over the threshold.')
         fig, ax = plt.subplots(figsize=size, dpi=dpi, constrained_layout=True)
         im = ax.imshow(expr_data, cmap=cmap, aspect='auto')
         ax.set_ylabel('Genes')
