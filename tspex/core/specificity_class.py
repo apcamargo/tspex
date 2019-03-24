@@ -149,7 +149,7 @@ class TissueSpecificity:
         threshold : float, default None
             Tissue-specificity threshold.
         sort_genes : bool, default False
-            Sort genes according to the tissue they are most expressed in.
+            Sort genes according to the tissues in which they are more expressed.
         use_zscore : bool, default False
             Use expression z-score instead of the raw values.
         gene_names : bool, default True
