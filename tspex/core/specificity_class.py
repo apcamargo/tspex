@@ -136,7 +136,7 @@ class TissueSpecificity:
             ax.set_xlabel(self._method)
             ax.set_title('Histogram of {} values'.format(self._method), loc='left')
 
-    def plot_heatmap(self, threshold, use_zscore=False, gene_names=True,
+    def plot_heatmap(self, threshold, sort_genes = False, use_zscore=False, gene_names=True,
                      tissue_names=True, cmap='viridis', size=(7, 4), dpi=100):
         """
         Plot a heatmap of the expression of genes with tissue-specificity over a
@@ -148,6 +148,8 @@ class TissueSpecificity:
         ----------
         threshold : float, default None
             Tissue-specificity threshold.
+        sort_genes : bool, default False
+            Sort genes according to the tissue they are most expressed in.
         use_zscore : bool, default False
             Use expression z-score instead of the raw values.
         gene_names : bool, default True
@@ -170,6 +172,9 @@ class TissueSpecificity:
         if not len(expr_data):
             warnings.warn('There is no gene with tissue-specificity value above the threshold.')
             return None
+        if sort_genes:
+            sorted_index = expr_data.idxmax(axis=1).sort_values().index
+            expr_data = expr_data.reindex(sorted_index)
         if use_zscore:
             expr_data = expr_data.apply(zscore, axis=1, result_type='broadcast', transform=False)
         fig, ax = plt.subplots(figsize=size, dpi=dpi, constrained_layout=True)
