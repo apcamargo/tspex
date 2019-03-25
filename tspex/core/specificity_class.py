@@ -50,7 +50,7 @@ class TissueSpecificity:
         'shannon_specificity', 'roku_specificity', 'zscore', 'spm', 'spm_dpm',
         'js_specificity', 'js_specificity_dpm'.
     log : bool, default False
-        Log-transform the expression matrix before computing tissue-expression
+        Log-transform the expression matrix before computing tissue-specificity
         by taking the base-2 logarithm of one plus the expression values. By
         default, no transformation is performed.
     transform : bool, default True
