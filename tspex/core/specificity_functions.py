@@ -376,8 +376,6 @@ def spm(vector, **kwargs):
         if vector[i] == 0:
             spm_vector.append(0)
         else:
-            vector_i = np.zeros(n)
-            vector_i[i] = vector[i]
             spm_i = (vector[i]**2) / (np.linalg.norm(vector)*vector[i])
             spm_vector.append(spm_i)
     return np.array(spm_vector)
