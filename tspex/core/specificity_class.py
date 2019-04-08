@@ -89,9 +89,12 @@ class TissueSpecificity:
         }
         self.expression_data = expression_data.select_dtypes(include='number').astype(float)
         if self.expression_data.shape[1] < expression_data.shape[1]:
-            warnings.warn('The input DataFrame contains non-numerical columns.')
+            warnings.warn('The input DataFrame contains non-numerical columns. These columns were removed.')
         if np.any(self.expression_data < 0):
             raise ValueError('Negative expression values are not allowed.')
+        if self.expression_data.index.duplicated().any():
+            warnings.warn('There are duplicated gene names in the input DataFrame index. Please, correct this issue.')
+            return None
         if log:
             self.expression_data = self.expression_data.apply(lambda x: np.log(x+1))
         self._method = str(method)
