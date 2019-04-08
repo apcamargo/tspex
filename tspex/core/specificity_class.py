@@ -87,7 +87,7 @@ class TissueSpecificity:
             'js_specificity': js_specificity,
             'js_specificity_dpm': js_specificity_dpm
         }
-        self.expression_data = expression_data.select_dtypes(include='number')
+        self.expression_data = expression_data.select_dtypes(include='number').astype(float)
         if self.expression_data.shape[1] < expression_data.shape[1]:
             warnings.warn('The input DataFrame contains non-numerical columns.')
         if np.any(self.expression_data < 0):
