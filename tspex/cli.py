@@ -29,8 +29,8 @@ import pandas as pd
 import tspex
 
 
-def execute_tspex(input_file, output_file, method, log, disable_transformation, threshold):
-    """Compute gene tissue-specificity from a expression matrix file."""
+def tspex_cli(input_file, output_file, method, log, disable_transformation, threshold):
+    """Compute gene tissue-specificity from a expression matrix file and save an output file."""
     transform = not disable_transformation
     expression_matrix = pd.read_csv(input_file, index_col=0, header=0, sep=None, engine='python')
     tissue_specificity = tspex.TissueSpecificity(
@@ -38,15 +38,18 @@ def execute_tspex(input_file, output_file, method, log, disable_transformation, 
     tissue_specificity.tissue_specificity.to_csv(output_file, sep='\t')
 
 
+def formatter_class(prog): return argparse.HelpFormatter(prog, max_help_position=40, width=80)
+
+
 def main():
     method_choices = ['counts', 'tsi', 'tau', 'gini', 'simpson', 'shannon_specificity',
                       'roku_specificity', 'zscore', 'spm', 'spm_dpm', 'js_specificity',
                       'js_specificity_dpm']
     parser = argparse.ArgumentParser(
-        description='Compute gene tissue-specificity from a expression matrix file.',
-        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+        description='Compute gene tissue-specificity from an expression matrix and save the output.',
+        formatter_class=formatter_class)
     parser.add_argument('input_file',
-                        help='Expression matrix file in the TSV or CSV format.')
+                        help='Expression matrix file in the TSV or CSV formats.')
     parser.add_argument('output_file',
                         help='Output TSV file containing tissue-specificity values.')
     parser.add_argument(
@@ -60,17 +63,13 @@ def main():
         help=('By default, tissue-specificity values are transformed so that they range from 0 '
               '(perfectly ubiquitous) to 1 (perfectly tissue-specific). If this parameter is used, '
               'transformation will be disabled and each metric will have have a diferent range of '
-              'values.'))
+              'possible values.'))
     parser.add_argument(
         '-t', '--threshold', default=0, type=int,
-        help=('Threshold to use with the "counts" metric. If another method if chosen, this '
+        help=('Threshold to be used with the "counts" metric. If another method is chosen, this '
               'parameter will be ignored.'))
     if len(sys.argv) < 2:
         parser.print_help()
         sys.exit(1)
     args = parser.parse_args()
-    execute_tspex(**vars(args))
-
-
-if __name__ == '__main__':
-    main()
+    tspex_cli(**vars(args))
