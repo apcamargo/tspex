@@ -29,7 +29,7 @@ import pandas as pd
 import tspex
 
 
-def main(input_file, output_file, method, log, disable_transformation, threshold):
+def execute_tspex(input_file, output_file, method, log, disable_transformation, threshold):
     """Compute gene tissue-specificity from a expression matrix file."""
     transform = not disable_transformation
     expression_matrix = pd.read_csv(input_file, index_col=0, header=0, sep=None, engine='python')
@@ -38,7 +38,7 @@ def main(input_file, output_file, method, log, disable_transformation, threshold
     tissue_specificity.tissue_specificity.to_csv(output_file, sep='\t')
 
 
-if __name__ == '__main__':
+def main():
     method_choices = ['counts', 'tsi', 'tau', 'gini', 'simpson', 'shannon_specificity',
                       'roku_specificity', 'zscore', 'spm', 'spm_dpm', 'js_specificity',
                       'js_specificity_dpm']
@@ -69,4 +69,8 @@ if __name__ == '__main__':
         parser.print_help()
         sys.exit(1)
     args = parser.parse_args()
-    main(**vars(args))
+    execute_tspex(**vars(args))
+
+
+if __name__ == '__main__':
+    main()
