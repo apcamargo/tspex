@@ -38,16 +38,13 @@ def tspex_cli(input_file, output_file, method, log, disable_transformation, thre
     tissue_specificity.tissue_specificity.to_csv(output_file, sep='\t')
 
 
-def formatter_class(prog): return argparse.HelpFormatter(prog, max_help_position=40, width=80)
-
-
 def main():
     method_choices = ['counts', 'tsi', 'tau', 'gini', 'simpson', 'shannon_specificity',
                       'roku_specificity', 'zscore', 'spm', 'spm_dpm', 'js_specificity',
                       'js_specificity_dpm']
     parser = argparse.ArgumentParser(
         description='Compute gene tissue-specificity from an expression matrix and save the output.',
-        formatter_class=formatter_class)
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('input_file',
                         help='Expression matrix file in the TSV or CSV formats.')
     parser.add_argument('output_file',
