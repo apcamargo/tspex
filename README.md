@@ -1,8 +1,8 @@
 # tspex
 
-`tspex` is a Python package for calculating tissue-specificity metrics from gene expression data.
+tspex is a Python package for calculating tissue-specificity metrics from gene expression data.
 
-`tspex` features include:
+tspex features include:
   - An easy-to-use object-oriented interface.
   - A command-line interface.
   - Twelve different tissue-specificity metrics.
@@ -22,8 +22,8 @@ $ conda install -c bioconda tspex
 
 ## Command-line interface
 
-`tspex` can be run from the command line to rapidly process a expression matrix file and generate an
-output containing the computed tissue-specificity values. Here is the usage of this interface:
+tspex can be executed from the command line to process a expression matrix and output the computed
+tissue-specificity values into a file. Here is the usage of this interface:
 
 ```
 usage: tspex [-h] [-l] [-d] [-t THRESHOLD] input_file output_file method
@@ -54,7 +54,7 @@ optional arguments:
                                        ignored.
 ```
 
-To compute the SPM values of a log-transformed expression matrix through the command-line interface:
+To compute the SPM values of a log-transformed expression matrix through the command line:
 
 ```
 tspex --log gene_expression.tsv gene_spm.tsv spm
