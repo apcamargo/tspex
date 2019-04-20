@@ -54,10 +54,11 @@ class TissueSpecificity:
         by taking the base-2 logarithm of one plus the expression values. By
         default, no transformation is performed.
     transform : bool, default True
-        Transform the computed value so it lies in the [0,1] range. By
-        default, the value is transformed. The following metrics are affected
-        by changes this parameter: 'gini', 'simpson', 'shannon_specificity',
-        'roku_specificity', 'zscore'.
+        Transform the tissue-specificity values so that they range from 0
+        (perfectly ubiquitous) to 1 (perfectly tissue-specific). By default, the
+        value is transformed. The following metrics are affected by changes this
+        parameter: 'gini', 'simpson', 'shannon_specificity', 'roku_specificity',
+        'zscore'.
     threshold : int or float, default 0
         Value above which the gene is considered to be expressed. By default,
         any positive expression value is considered. Only the 'counts' metric
