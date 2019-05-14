@@ -1,6 +1,6 @@
 # tspex
 
-tspex is a Python package for calculating tissue-specificity metrics from gene expression data. It provides both an easy-to-use object-oriented interface and a command-line interface.
+tspex is a Python package for calculating tissue-specificity metrics from gene expression data. It provides both an easy-to-use object-oriented Python API and a command-line interface (CLI).
 
 tspex features include:
   - Twelve different tissue-specificity metrics.
@@ -17,6 +17,11 @@ $ pip install tspex
 # using conda
 $ conda install -c bioconda tspex
 ```
+
+## Python API
+
+For a detailed guide of how to use the Python API, please check the [Jupyter notebook tutorial](https://github.com/apcamargo/tspex/blob/master/tutorial.ipynb).
+
 
 ## Command-line interface
 
