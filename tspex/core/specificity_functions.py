@@ -350,7 +350,7 @@ def zscore(vector, **kwargs):
 
 def spm(vector, **kwargs):
     """
-    Quantify tissue-specificity as the Specificity Measure (SPM) [1].
+    Quantify tissue-specificity as the Specificity Measure (SPM) [1,2].
 
     Parameters
     ----------
@@ -366,7 +366,9 @@ def spm(vector, **kwargs):
 
     References
     ----------
-    .. [1] Pan, Jian-Bo, et al. "PaGeFinder: quantitative identification of
+    .. [1] Xiao, Sheng-Jian, et al. "TiSGeD: a database for tissue-specific
+           genes." Bioinformatics 26.9 (2010)
+    .. [2] Pan, Jian-Bo, et al. "PaGeFinder: quantitative identification of
            spatiotemporal pattern genes." Bioinformatics 28.11 (2012)
     """
 
