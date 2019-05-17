@@ -1,9 +1,8 @@
 # tspex
 
-
 - [Overview](#overview)
 - [Installation](#installation)
-- [Python API](#python-api)
+- [Python API tutorial](#python-api-tutorial)
 - [Command-line interface](#command-line-interface)
 - [Examples](#examples)
 
@@ -32,9 +31,9 @@ $ conda install -c bioconda rnasamba
 ```
 
 
-## Python API
+## Python API tutorial
 
-For a detailed guide of how to use the Python API, please check the [Jupyter notebook tutorial](https://github.com/apcamargo/tspex/blob/master/tutorial.ipynb).
+For a detailed guide on how to use the Python API, please check the [Jupyter notebook tutorial](https://github.com/apcamargo/tspex/blob/master/tutorial.ipynb).
 
 
 ## Command-line interface
