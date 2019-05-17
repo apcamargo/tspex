@@ -54,9 +54,10 @@ class TissueSpecificity:
         by taking the base-2 logarithm of one plus the expression values. By
         default, no transformation is performed.
     transform : bool, default True
-        Transform the computed value so it lies in the [0,1] range. By
-        default, the value is transformed. The following metrics are affected
-        by changes this parameter: 'gini', 'simpson', 'shannon_specificity',
+        Transform the tissue-specificity values so that they range from 0
+        (perfectly ubiquitous) to 1 (perfectly tissue-specific). By default, the
+        value is transformed. The following metrics are affected by changes in
+        this parameter: 'gini', 'simpson', 'shannon_specificity',
         'roku_specificity', 'zscore'.
     threshold : int or float, default 0
         Value above which the gene is considered to be expressed. By default,
@@ -114,7 +115,7 @@ class TissueSpecificity:
         tissue_specificity = tissue_specificity.round(4)
         return tissue_specificity
 
-    def plot_histogram(self, bins=50, size=(7, 4), dpi=100):
+    def plot_histogram(self, bins=30, size=(6, 4), dpi=75):
         """
         Plot a histogram of the tissue-specificity values. If the chosen metric
         is one of 'zscore', 'spm' or 'js_specificity', the maximum row value is used
@@ -122,11 +123,11 @@ class TissueSpecificity:
 
         Parameters
         ----------
-        bins : int, default 50
+        bins : int, default 30
             Number of bins in the histogram.
-        size : tuple, default (7,4)
+        size : tuple, default (6,4)
             Size of the figure.
-        dpi : int, default 100
+        dpi : int, default 75
             The resolution in dots per inch.
         """
 
@@ -141,8 +142,8 @@ class TissueSpecificity:
             ax.set_xlabel(self._method)
             ax.set_title('Histogram of {} values'.format(self._method), loc='left')
 
-    def plot_heatmap(self, threshold, sort_genes = False, use_zscore=False, gene_names=True,
-                     tissue_names=True, cmap='viridis', size=(7, 4), dpi=100):
+    def plot_heatmap(self, threshold, sort_genes=False, use_zscore=False, gene_names=True,
+                     tissue_names=True, cmap='viridis', size=(6, 4), dpi=75):
         """
         Plot a heatmap of the expression of genes with tissue-specificity over a
         given a threshold. The threshold should be in the [0,1] range. If the
@@ -163,9 +164,9 @@ class TissueSpecificity:
             Show tissue names in the x-axis.
         cmap : str or matplotlib.colors.Colormap, default 'viridis'
             Colormap to use in the heatmap.
-        size : tuple, default (7,4)
+        size : tuple, default (6,4)
             Size of the figure.
-        dpi : int, default 100
+        dpi : int, default 75
             The resolution in dots per inch.
         """
 
