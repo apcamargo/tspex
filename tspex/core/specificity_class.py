@@ -46,9 +46,9 @@ class TissueSpecificity:
         corresponding to genes and columns to tissues/conditions.
     method : str
         A string representing which tissue-expression metric should be
-        calculated. One of: 'counts', 'tsi', 'tau', 'gini', 'simpson',
-        'shannon_specificity', 'roku_specificity', 'zscore', 'spm', 'spm_dpm',
-        'js_specificity', 'js_specificity_dpm'.
+        calculated. One of: 'counts', 'tau', 'gini', 'simpson',
+        'shannon_specificity', 'roku_specificity', 'tsi', 'zscore', 'spm',
+        'spm_dpm', 'js_specificity', 'js_specificity_dpm'.
     log : bool, default False
         Log-transform the expression matrix before computing tissue-specificity
         by taking the base-2 logarithm of one plus the expression values. By
@@ -76,12 +76,12 @@ class TissueSpecificity:
     def __init__(self, expression_data, method, log=False, **kwargs):
         self._function_dictionary = {
             'counts': counts,
-            'tsi': tsi,
             'tau': tau,
             'gini': gini,
             'simpson': simpson,
             'shannon_specificity': shannon_specificity,
             'roku_specificity': roku_specificity,
+            'tsi': tsi,
             'zscore': zscore,
             'spm': spm,
             'spm_dpm': spm_dpm,
@@ -105,7 +105,7 @@ class TissueSpecificity:
 
     def _compute_tissue_specificity(self):
         func = self._function_dictionary[self._method]
-        if self._method in ['zscore', 'spm', 'js_specificity']:
+        if self._method in ['tsi', 'zscore', 'spm', 'js_specificity']:
             tissue_specificity = self.expression_data.apply(func, axis=1, result_type='broadcast',
                                                             transform=self._transform)
         else:
@@ -118,8 +118,8 @@ class TissueSpecificity:
     def plot_histogram(self, bins=30, size=(6, 4), dpi=75):
         """
         Plot a histogram of the tissue-specificity values. If the chosen metric
-        is one of 'zscore', 'spm' or 'js_specificity', the maximum row value is used
-        as a representative of the gene tissue-specificity.
+        is one of 'tsi', 'zscore', 'spm' or 'js_specificity', the maximum row
+        value is used as a representative of the gene tissue-specificity.
 
         Parameters
         ----------
@@ -132,7 +132,7 @@ class TissueSpecificity:
         """
 
         with plt.style.context('seaborn-whitegrid'):
-            if self._method in ['zscore', 'spm', 'js_specificity']:
+            if self._method in ['tsi', 'zscore', 'spm', 'js_specificity']:
                 data = self.tissue_specificity.max(axis=1).values
             else:
                 data = self.tissue_specificity.values
@@ -147,8 +147,9 @@ class TissueSpecificity:
         """
         Plot a heatmap of the expression of genes with tissue-specificity over a
         given a threshold. The threshold should be in the [0,1] range. If the
-        chosen metric is one of 'zscore', 'spm' or 'js_specificity', the maximum
-        row value is used as a representative of the gene tissue-specificity.
+        chosen metric is one of 'tsi', 'zscore', 'spm' or 'js_specificity', the
+        maximum row value is used as a representative of the gene
+        tissue-specificity.
 
         Parameters
         ----------
@@ -170,7 +171,7 @@ class TissueSpecificity:
             The resolution in dots per inch.
         """
 
-        if self._method in ['zscore', 'spm', 'js_specificity']:
+        if self._method in ['tsi', 'zscore', 'spm', 'js_specificity']:
             ts_data = self.tissue_specificity.max(axis=1)
         else:
             ts_data = self.tissue_specificity

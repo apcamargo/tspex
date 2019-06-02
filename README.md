@@ -50,9 +50,9 @@ positional arguments:
   input_file            Expression matrix file in the TSV or CSV formats.
   output_file           Output TSV file containing tissue-specificity values.
   method                Tissue-specificity metric. Allowed values are:
-                        "counts", "tsi", "tau", "gini", "simpson",
-                        "shannon_specificity", "roku_specificity", "zscore",
-                        "spm", "spm_dpm", "js_specificity",
+                        "counts", "tau", "gini", "simpson",
+                        "shannon_specificity", "roku_specificity", "tsi",
+                        "zscore", "spm", "spm_dpm", "js_specificity",
                         "js_specificity_dpm".
 
 optional arguments:
