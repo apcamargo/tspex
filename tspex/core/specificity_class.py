@@ -105,7 +105,7 @@ class TissueSpecificity:
 
     def _compute_tissue_specificity(self):
         func = self._function_dictionary[self._method]
-        if self._method in ['tau', 'zscore', 'spm', 'js_specificity']:
+        if self._method in ['tsi', 'zscore', 'spm', 'js_specificity']:
             tissue_specificity = self.expression_data.apply(func, axis=1, result_type='broadcast',
                                                             transform=self._transform)
         else:
