@@ -39,9 +39,8 @@ def tspex_cli(input_file, output_file, method, log, disable_transformation, thre
 
 
 def main():
-    method_choices = ['counts', 'tsi', 'tau', 'gini', 'simpson', 'shannon_specificity',
-                      'roku_specificity', 'zscore', 'spm', 'spm_dpm', 'js_specificity',
-                      'js_specificity_dpm']
+    method_choices = ['counts', 'tau', 'gini', 'simpson', 'shannon_specificity', 'roku_specificity',
+                      'tsi', 'zscore', 'spm', 'spm_dpm', 'js_specificity', 'js_specificity_dpm']
     parser = argparse.ArgumentParser(
         description='Compute gene tissue-specificity from an expression matrix and save the output.',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
