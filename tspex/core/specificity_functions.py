@@ -82,36 +82,6 @@ def counts(vector, **kwargs):
             return cts_transformed
 
 
-def tsi(vector, **kwargs):
-    """
-    Quantify tissue-specificity as the ratio between the vector's maximum
-    expression value and the sum of the expression values in all tissues.
-
-    Parameters
-    ----------
-    vector : numpy.array
-        Gene expression vector. Each value corresponds to the gene expression
-        in a given tissue.
-
-    Returns
-    -------
-    float
-        Single summary of the tissue-specificity. Ranges from 0 (ubiquitous
-        expression) to 1 (specific expression).
-
-    References
-    ----------
-    .. [1] Julien, Philippe, et al. "Mechanisms and evolutionary patterns of
-           mammalian and avian dosage compensation." PLoS biology 10.5 (2012)
-    """
-
-    if not np.any(vector):
-        return 0.0
-    else:
-        tissue_specificity_index = max(vector) / np.sum(vector)
-        return tissue_specificity_index
-
-
 def tau(vector, **kwargs):
     """
     Quantify tissue-specificity as the Tau index [1].
@@ -305,6 +275,36 @@ def roku_specificity(vector, **kwargs):
             return rs_transformed
         else:
             return rs
+
+
+def tsi(vector, **kwargs):
+    """
+    Quantify tissue-specificity as the ratio between the expression vector
+    and the sum of the expression values in all tissues.
+
+    Parameters
+    ----------
+    vector : numpy.array
+        Gene expression vector. Each value corresponds to the gene expression
+        in a given tissue.
+
+    Returns
+    -------
+    numpy.array
+        Summary of the tissue-specificity level in each tissue. It ranges from
+        0 (ubiquitous expression) to 1 (specific expression).
+
+    References
+    ----------
+    .. [1] Julien, Philippe, et al. "Mechanisms and evolutionary patterns of
+           mammalian and avian dosage compensation." PLoS biology 10.5 (2012)
+    """
+
+    if not np.any(vector):
+        return 0.0
+    else:
+        tissue_specificity_index = vector / np.sum(vector)
+        return tissue_specificity_index
 
 
 def zscore(vector, **kwargs):

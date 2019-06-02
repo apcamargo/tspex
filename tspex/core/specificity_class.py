@@ -46,9 +46,9 @@ class TissueSpecificity:
         corresponding to genes and columns to tissues/conditions.
     method : str
         A string representing which tissue-expression metric should be
-        calculated. One of: 'counts', 'tsi', 'tau', 'gini', 'simpson',
-        'shannon_specificity', 'roku_specificity', 'zscore', 'spm', 'spm_dpm',
-        'js_specificity', 'js_specificity_dpm'.
+        calculated. One of: 'counts', 'tau', 'gini', 'simpson',
+        'shannon_specificity', 'roku_specificity', 'tsi', 'zscore', 'spm',
+        'spm_dpm', 'js_specificity', 'js_specificity_dpm'.
     log : bool, default False
         Log-transform the expression matrix before computing tissue-specificity
         by taking the base-2 logarithm of one plus the expression values. By
@@ -76,12 +76,12 @@ class TissueSpecificity:
     def __init__(self, expression_data, method, log=False, **kwargs):
         self._function_dictionary = {
             'counts': counts,
-            'tsi': tsi,
             'tau': tau,
             'gini': gini,
             'simpson': simpson,
             'shannon_specificity': shannon_specificity,
             'roku_specificity': roku_specificity,
+            'tsi': tsi,
             'zscore': zscore,
             'spm': spm,
             'spm_dpm': spm_dpm,
@@ -105,7 +105,7 @@ class TissueSpecificity:
 
     def _compute_tissue_specificity(self):
         func = self._function_dictionary[self._method]
-        if self._method in ['zscore', 'spm', 'js_specificity']:
+        if self._method in ['tau', 'zscore', 'spm', 'js_specificity']:
             tissue_specificity = self.expression_data.apply(func, axis=1, result_type='broadcast',
                                                             transform=self._transform)
         else:
