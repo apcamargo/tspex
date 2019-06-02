@@ -118,8 +118,8 @@ class TissueSpecificity:
     def plot_histogram(self, bins=30, size=(6, 4), dpi=75):
         """
         Plot a histogram of the tissue-specificity values. If the chosen metric
-        is one of 'zscore', 'spm' or 'js_specificity', the maximum row value is used
-        as a representative of the gene tissue-specificity.
+        is one of 'tsi', 'zscore', 'spm' or 'js_specificity', the maximum row
+        value is used as a representative of the gene tissue-specificity.
 
         Parameters
         ----------
@@ -132,7 +132,7 @@ class TissueSpecificity:
         """
 
         with plt.style.context('seaborn-whitegrid'):
-            if self._method in ['zscore', 'spm', 'js_specificity']:
+            if self._method in ['tsi', 'zscore', 'spm', 'js_specificity']:
                 data = self.tissue_specificity.max(axis=1).values
             else:
                 data = self.tissue_specificity.values
@@ -147,8 +147,9 @@ class TissueSpecificity:
         """
         Plot a heatmap of the expression of genes with tissue-specificity over a
         given a threshold. The threshold should be in the [0,1] range. If the
-        chosen metric is one of 'zscore', 'spm' or 'js_specificity', the maximum
-        row value is used as a representative of the gene tissue-specificity.
+        chosen metric is one of 'tsi', 'zscore', 'spm' or 'js_specificity', the
+        maximum row value is used as a representative of the gene
+        tissue-specificity.
 
         Parameters
         ----------
@@ -170,7 +171,7 @@ class TissueSpecificity:
             The resolution in dots per inch.
         """
 
-        if self._method in ['zscore', 'spm', 'js_specificity']:
+        if self._method in ['tsi', 'zscore', 'spm', 'js_specificity']:
             ts_data = self.tissue_specificity.max(axis=1)
         else:
             ts_data = self.tissue_specificity
