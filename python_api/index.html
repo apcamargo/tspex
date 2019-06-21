@@ -1,0 +1,503 @@
+<!doctype html><html lang="en" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content="Documentation for tspex, a tissue-specificity calculator"><link rel="canonical" href="http://apcamargo.github.io/tspex/python_api/"><meta name="author" content="Antonio Camargo"><meta name="lang:clipboard.copy" content="Copy to clipboard"><meta name="lang:clipboard.copied" content="Copied to clipboard"><meta name="lang:search.language" content="en"><meta name="lang:search.pipeline.stopwords" content="True"><meta name="lang:search.pipeline.trimmer" content="True"><meta name="lang:search.result.none" content="No matching documents"><meta name="lang:search.result.one" content="1 matching document"><meta name="lang:search.result.other" content="# matching documents"><meta name="lang:search.tokenizer" content="[\s\-]+"><link rel="shortcut icon" href="../assets/images/favicon.png"><meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.0"><title>Python API - tspex Documentation</title><link rel="stylesheet" href="../assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content=""><script src="../assets/javascripts/modernizr.74668098.js"></script><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,700|Fira+Mono&display=swap"><style>body,input{font-family:"Nunito Sans","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono","Courier New",Courier,monospace}</style><link rel="stylesheet" href="../assets/fonts/material-icons.css"><link rel="stylesheet" href="../extra.css"></head><body dir="ltr" data-md-color-primary="white" data-md-color-accent="light-blue"><svg class="md-svg"><defs><svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg></defs></svg> <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off"> <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off"> <label class="md-overlay" data-md-component="overlay" for="__drawer"></label><a href="#python-api" tabindex="1" class="md-skip">Skip to content </a><header class="md-header" data-md-component="header"><nav class="md-header-nav md-grid"><div class="md-flex"><div class="md-flex__cell md-flex__cell--shrink"><a href="http://apcamargo.github.io/tspex/" title="tspex Documentation" class="md-header-nav__button md-logo"><i class="md-icon">book</i></a></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label></div><div class="md-flex__cell md-flex__cell--stretch"><div class="md-flex__ellipsis md-header-nav__title" data-md-component="title"><span class="md-header-nav__topic">tspex Documentation</span><span class="md-header-nav__topic">Python API</span></div></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--search md-header-nav__button" for="__search"></label><div class="md-search" data-md-component="search" role="dialog"><label class="md-search__overlay" for="__search"></label><div class="md-search__inner" role="search"><form class="md-search__form" name="search"><input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active"> <label class="md-icon md-search__icon" for="__search"></label> <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">&#xE5CD;</button></form><div class="md-search__output"><div class="md-search__scrollwrap" data-md-scrollfix><div class="md-search-result" data-md-component="result"><div class="md-search-result__meta">Type to start searching</div><ol class="md-search-result__list"></ol></div></div></div></div></div></div><div class="md-flex__cell md-flex__cell--shrink"><div class="md-header-nav__source"><a href="https://github.com/apcamargo/tspex/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">apcamargo/tspex</div></a></div></div></div></nav></header><div class="md-container"><main class="md-main"><div class="md-main__inner md-grid" data-md-component="container"><div class="md-sidebar md-sidebar--primary" data-md-component="navigation"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--primary" data-md-level="0"><label class="md-nav__title md-nav__title--site" for="__drawer"><a href="http://apcamargo.github.io/tspex/" title="tspex Documentation" class="md-nav__button md-logo"><i class="md-icon">book</i></a>tspex Documentation</label><div class="md-nav__source"><a href="https://github.com/apcamargo/tspex/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">apcamargo/tspex</div></a></div><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href=".." title="Home" class="md-nav__link">Home</a></li><li class="md-nav__item md-nav__item--active"><input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc"><label class="md-nav__link md-nav__link--active" for="__toc">Python API</label><a href="./" title="Python API" class="md-nav__link md-nav__link--active">Python API</a><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Table of contents</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#introduction" title="Introduction" class="md-nav__link">Introduction</a></li><li class="md-nav__item"><a href="#the-tissuespecificity-class" title="The TissueSpecificity class" class="md-nav__link">The TissueSpecificity class</a></li><li class="md-nav__item"><a href="#tissue-specificity-metrics" title="Tissue-specificity metrics" class="md-nav__link">Tissue-specificity metrics</a></li><li class="md-nav__item"><a href="#example-1-general-scoring-metric" title="Example 1: General scoring metric" class="md-nav__link">Example 1: General scoring metric</a></li><li class="md-nav__item"><a href="#example-2-individualized-scoring-metric" title="Example 2: Individualized scoring metric" class="md-nav__link">Example 2: Individualized scoring metric</a></li><li class="md-nav__item"><a href="#example-3-the-transform-parameter" title="Example 3: The transform parameter" class="md-nav__link">Example 3: The transform parameter</a></li><li class="md-nav__item"><a href="#example-4-the-threshold-parameter-of-the-counts-metric" title="Example 4: The threshold parameter of the counts metric" class="md-nav__link">Example 4: The threshold parameter of the counts metric</a></li></ul></nav></li><li class="md-nav__item"><a href="../cli/" title="Command-line interface (CLI)" class="md-nav__link">Command-line interface (CLI)</a></li></ul></nav></div></div></div><div class="md-sidebar md-sidebar--secondary" data-md-component="toc"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Table of contents</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#introduction" title="Introduction" class="md-nav__link">Introduction</a></li><li class="md-nav__item"><a href="#the-tissuespecificity-class" title="The TissueSpecificity class" class="md-nav__link">The TissueSpecificity class</a></li><li class="md-nav__item"><a href="#tissue-specificity-metrics" title="Tissue-specificity metrics" class="md-nav__link">Tissue-specificity metrics</a></li><li class="md-nav__item"><a href="#example-1-general-scoring-metric" title="Example 1: General scoring metric" class="md-nav__link">Example 1: General scoring metric</a></li><li class="md-nav__item"><a href="#example-2-individualized-scoring-metric" title="Example 2: Individualized scoring metric" class="md-nav__link">Example 2: Individualized scoring metric</a></li><li class="md-nav__item"><a href="#example-3-the-transform-parameter" title="Example 3: The transform parameter" class="md-nav__link">Example 3: The transform parameter</a></li><li class="md-nav__item"><a href="#example-4-the-threshold-parameter-of-the-counts-metric" title="Example 4: The threshold parameter of the counts metric" class="md-nav__link">Example 4: The threshold parameter of the counts metric</a></li></ul></nav></div></div></div><div class="md-content"><article class="md-content__inner md-typeset"><a href="https://github.com/apcamargo/tspex/edit/master/docs/python_api.ipynb" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a><h1 id="python-api">Python API</h1>
+<p>In this tutorial we will detail the usage of the Python API with real-world data, showing how to integrate tspex with popular packages such as <code>pandas</code> and <code>seaborn</code>.</p>
+<h2 id="introduction">Introduction</h2>
+<p>In this tutorial we are going to use data from the <a href="https://gtexportal.org/">Genotype-Tissue Expression (GTEx) project</a>, which provides a large catalogue of gene expression across 54 human tissues. In order to speed up the calculations and make the figures clearer, we are going to use only five tissues: Bladder, Liver, Lung, Pancreas and Stomach.</p>
+<pre><code class="python">import tspex
+import pandas as pd
+import seaborn as sns
+</code></pre>
+
+<pre><code class="python">gtex_link = 'https://storage.googleapis.com/gtex_analysis_v7/rna_seq_data/GTEx_Analysis_2016-01-15_v7_RNASeQCv1.1.8_gene_median_tpm.gct.gz'
+expression_data = pd.read_csv(gtex_link, sep='\t', index_col='gene_id', skiprows=2)
+expression_data = expression_data.loc[:, ['Bladder', 'Liver', 'Lung', 'Pancreas', 'Stomach']]
+</code></pre>
+
+<p>We'll remove genes that are not expressed in any of the five tissues.</p>
+<pre><code class="python">expression_data = expression_data.loc[(expression_data &gt; 0).any(axis=1)]
+</code></pre>
+
+<pre><code class="python">expression_data.shape
+</code></pre>
+
+<pre><code>(31872, 5)
+</code></pre>
+<pre><code class="python">expression_data.head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Bladder</th>
+      <th>Liver</th>
+      <th>Lung</th>
+      <th>Pancreas</th>
+      <th>Stomach</th>
+    </tr>
+    <tr>
+      <th>gene_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ENSG00000223972.4</th>
+      <td>0.05878</td>
+      <td>0.06259</td>
+      <td>0.06655</td>
+      <td>0.027255</td>
+      <td>0.063895</td>
+    </tr>
+    <tr>
+      <th>ENSG00000227232.4</th>
+      <td>14.24000</td>
+      <td>5.40600</td>
+      <td>13.68000</td>
+      <td>5.553000</td>
+      <td>9.342500</td>
+    </tr>
+    <tr>
+      <th>ENSG00000243485.2</th>
+      <td>0.06097</td>
+      <td>0.08316</td>
+      <td>0.06216</td>
+      <td>0.034055</td>
+      <td>0.078575</td>
+    </tr>
+    <tr>
+      <th>ENSG00000237613.2</th>
+      <td>0.04113</td>
+      <td>0.03354</td>
+      <td>0.03790</td>
+      <td>0.022915</td>
+      <td>0.043800</td>
+    </tr>
+    <tr>
+      <th>ENSG00000268020.2</th>
+      <td>0.00000</td>
+      <td>0.02959</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="the-tissuespecificity-class">The <code>TissueSpecificity</code> class</h2>
+<p>The usage of the tspex module is centered on the creation and analysis of <code>TissueSpecificity</code> objects. In order to create these objects, two parameters are required: (1) a <code>pandas</code> DataFrame containing gene expression data and (2) a tissue-specificity metric.</p>
+<pre><code class="python">print(tspex.TissueSpecificity.__doc__)
+</code></pre>
+
+<pre><code>    Create an object of the TissueSpecificity class.
+
+    Parameters
+    ----------
+    expression_data : pandas.core.frame.DataFrame
+        Pandas DataFrame containing the expression matrix, with rows
+        corresponding to genes and columns to tissues/conditions.
+    method : str
+        A string representing which tissue-expression metric should be
+        calculated. One of: 'counts', 'tau', 'gini', 'simpson',
+        'shannon_specificity', 'roku_specificity', 'tsi', 'zscore', 'spm',
+        'spm_dpm', 'js_specificity', 'js_specificity_dpm'.
+    log : bool, default False
+        Log-transform the expression matrix before computing tissue-specificity
+        by taking the base-2 logarithm of one plus the expression values. By
+        default, no transformation is performed.
+    transform : bool, default True
+        Transform the tissue-specificity values so that they range from 0
+        (perfectly ubiquitous) to 1 (perfectly tissue-specific). By default, the
+        value is transformed. The following metrics are affected by changes in
+        this parameter: 'gini', 'simpson', 'shannon_specificity',
+        'roku_specificity', 'zscore'.
+    threshold : int or float, default 0
+        Value above which the gene is considered to be expressed. By default,
+        any positive expression value is considered. Only the 'counts' metric
+        is affected by changes in this parameter.
+
+    Attributes
+    ----------
+    expression_data : pandas.DataFrame
+        Expression matrix used to compute the tissue-specificity values. If the
+        log parameter was set to True, the values will be log-transformed.
+    tissue_specificity : pandas.Series or pandas.DataFrame
+        Tissue-specificity values computed from the input expression matrix.
+</code></pre>
+<p>The nonobligatory parameters (<code>log</code>, <code>transform</code> and <code>threshold</code>) and the object attributes (<code>expression_data</code> and <code>tissue_specificity</code>) will be explained throughout the tutorial.</p>
+<h2 id="tissue-specificity-metrics">Tissue-specificity metrics</h2>
+<p>tspex provides twelve different tissue-specificity metrics that can be divided into two groups:
+ - <strong>General scoring metrics:</strong> Describe in a single value how tissue-specific or ubiquitous is a gene across all tissues (<code>counts</code>, <code>tau</code>, <code>gini</code>, <code>simpson</code>, <code>shannon_specificity</code>, <code>roku_specificity</code>, <code>spm_dpm</code> and <code>js_specificity_dpm</code>).
+ - <strong>Individualized scoring metrics:</strong> Quantify how specific is the expression of each gene to each tissue (<code>tsi</code>, <code>zscore</code>, <code>spm</code> and <code>js_specificity</code>).</p>
+<h2 id="example-1-general-scoring-metric">Example 1: General scoring metric</h2>
+<p>In this example we are going to quantify the tissue-specificity of each gene using the Tau metric, which is a general scoring metric. Therefore, we will get a single tissue-specificity score per gene.</p>
+<p>When creating a <code>TissueSpecificity</code> object, you can choose to log-transform the expression values before quantifying tissue-specificity.</p>
+<pre><code class="python">tso = tspex.TissueSpecificity(expression_data, 'tau', log=True)
+</code></pre>
+
+<p>The log-transformed expression matrix is stored in the <code>expression_data</code> attribute, which is a regular <code>pandas</code> DataFrame.</p>
+<pre><code class="python">tso.expression_data.head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Bladder</th>
+      <th>Liver</th>
+      <th>Lung</th>
+      <th>Pancreas</th>
+      <th>Stomach</th>
+    </tr>
+    <tr>
+      <th>gene_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ENSG00000223972.4</th>
+      <td>0.057117</td>
+      <td>0.060709</td>
+      <td>0.064429</td>
+      <td>0.026890</td>
+      <td>0.061937</td>
+    </tr>
+    <tr>
+      <th>ENSG00000227232.4</th>
+      <td>2.723924</td>
+      <td>1.857235</td>
+      <td>2.686486</td>
+      <td>1.879923</td>
+      <td>2.336262</td>
+    </tr>
+    <tr>
+      <th>ENSG00000243485.2</th>
+      <td>0.059184</td>
+      <td>0.079883</td>
+      <td>0.060305</td>
+      <td>0.033488</td>
+      <td>0.075641</td>
+    </tr>
+    <tr>
+      <th>ENSG00000237613.2</th>
+      <td>0.040307</td>
+      <td>0.032990</td>
+      <td>0.037199</td>
+      <td>0.022656</td>
+      <td>0.042868</td>
+    </tr>
+    <tr>
+      <th>ENSG00000268020.2</th>
+      <td>0.000000</td>
+      <td>0.029161</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>The computed tissue-specificity values are stored in the <code>tissue_specificity</code> attribute that, in this case, is an one-dimensional <code>pandas</code> Series.</p>
+<pre><code class="python">tso.tissue_specificity.head()
+</code></pre>
+
+<pre><code>gene_id
+ENSG00000223972.4    0.1981
+ENSG00000227232.4    0.1960
+ENSG00000243485.2    0.2845
+ENSG00000237613.2    0.2235
+ENSG00000268020.2    1.0000
+dtype: float64
+</code></pre>
+<p>Any of the Series' methods can be used to inspect <code>tissue_specificity</code>.</p>
+<pre><code class="python">tso.tissue_specificity.quantile([0.5, 0.75, 0.95])
+</code></pre>
+
+<pre><code>0.50    0.502950
+0.75    0.761925
+0.95    1.000000
+dtype: float64
+</code></pre>
+<p>Two visualization methods are available in tspex: <code>plot_histogram</code> and <code>plot_heatmap</code>.</p>
+<p><code>plot_histogram</code> can be used to verify the distribution of the tissue-specificity values.</p>
+<pre><code class="python">tso.plot_histogram()
+</code></pre>
+
+<p><img alt="png" src="output_28_0.png" /></p>
+<p>Whereas <code>plot_heatmap</code> may be used to visualize the amount of genes that are specific for each tissue.</p>
+<pre><code class="python">tso.plot_heatmap(threshold=0.8, sort_genes=True, use_zscore=True, gene_names=False)
+</code></pre>
+
+<p><img alt="png" src="output_30_0.png" /></p>
+<h2 id="example-2-individualized-scoring-metric">Example 2: Individualized scoring metric</h2>
+<p>In some cases we may be interested in discovering genes that are specifically expressed in one or more tissues of interest. In this situation, general scoring metrics are not be the best choice, as they would only tell us how tissue-specific is each gene, regardless of the tissue.</p>
+<p>Accordingly, in this example we are going to quantify the tissue-specificity of each gene using the SPM metric, an individualized scoring metric.</p>
+<pre><code class="python">tso = tspex.TissueSpecificity(expression_data, 'spm', log=True)
+</code></pre>
+
+<p>As the SPM metric computes how specific each gene is in each tissue, the <code>tissue_specificity</code> attribute is a two-dimensional <code>pandas</code> DataFrame.</p>
+<pre><code class="python">tso.tissue_specificity.head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Bladder</th>
+      <th>Liver</th>
+      <th>Lung</th>
+      <th>Pancreas</th>
+      <th>Stomach</th>
+    </tr>
+    <tr>
+      <th>gene_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ENSG00000223972.4</th>
+      <td>0.4565</td>
+      <td>0.4852</td>
+      <td>0.5149</td>
+      <td>0.2149</td>
+      <td>0.4950</td>
+    </tr>
+    <tr>
+      <th>ENSG00000227232.4</th>
+      <td>0.5235</td>
+      <td>0.3569</td>
+      <td>0.5163</td>
+      <td>0.3613</td>
+      <td>0.4490</td>
+    </tr>
+    <tr>
+      <th>ENSG00000243485.2</th>
+      <td>0.4147</td>
+      <td>0.5598</td>
+      <td>0.4226</td>
+      <td>0.2347</td>
+      <td>0.5301</td>
+    </tr>
+    <tr>
+      <th>ENSG00000237613.2</th>
+      <td>0.5020</td>
+      <td>0.4108</td>
+      <td>0.4633</td>
+      <td>0.2822</td>
+      <td>0.5339</td>
+    </tr>
+    <tr>
+      <th>ENSG00000268020.2</th>
+      <td>0.0000</td>
+      <td>1.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>To inspect the distribution of the tissue-specificity values separately for each tissue, we can use the <code>violinplot</code> function from the <code>seaborn</code> package.</p>
+<pre><code class="python">sns.violinplot(x=&quot;variable&quot;, y=&quot;value&quot;, inner=None, scale=&quot;count&quot;, color='C0',
+               data=tso.tissue_specificity.melt());
+</code></pre>
+
+<p><img alt="png" src="output_38_0.png" /></p>
+<p>The <code>query</code> method can be used to select genes that satisfy certain criteria. In this case, we are selecting genes that are preferentially expressed in the bladder and lung.</p>
+<pre><code class="python">selected_genes_specificity = tso.tissue_specificity.query('Bladder &gt;= 0.6 &amp; Lung &gt;= 0.6')
+selected_genes_specificity.shape
+</code></pre>
+
+<pre><code>(1282, 5)
+</code></pre>
+<pre><code class="python">selected_genes_expression = tso.expression_data.reindex(selected_genes_specificity.index)
+selected_genes_specificity.head()
+</code></pre>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Bladder</th>
+      <th>Liver</th>
+      <th>Lung</th>
+      <th>Pancreas</th>
+      <th>Stomach</th>
+    </tr>
+    <tr>
+      <th>gene_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ENSG00000228526.2</th>
+      <td>0.6410</td>
+      <td>0.1192</td>
+      <td>0.6566</td>
+      <td>0.2270</td>
+      <td>0.3038</td>
+    </tr>
+    <tr>
+      <th>ENSG00000233623.2</th>
+      <td>0.6775</td>
+      <td>0.1907</td>
+      <td>0.6832</td>
+      <td>0.1948</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>ENSG00000171819.4</th>
+      <td>0.7653</td>
+      <td>0.0433</td>
+      <td>0.6072</td>
+      <td>0.0858</td>
+      <td>0.1908</td>
+    </tr>
+    <tr>
+      <th>ENSG00000202461.1</th>
+      <td>0.6564</td>
+      <td>0.0000</td>
+      <td>0.6383</td>
+      <td>0.2459</td>
+      <td>0.3181</td>
+    </tr>
+    <tr>
+      <th>ENSG00000162493.12</th>
+      <td>0.6019</td>
+      <td>0.0214</td>
+      <td>0.6080</td>
+      <td>0.2072</td>
+      <td>0.4740</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<pre><code class="python">sns.clustermap(selected_genes_expression, figsize=(6,6), z_score=0);
+</code></pre>
+
+<p><img alt="png" src="output_42_0.png" /></p>
+<h2 id="example-3-the-transform-parameter">Example 3: The <code>transform</code> parameter</h2>
+<p>When a <code>TissueSpecificity</code> object is created, the computed tissue-specificity values are transformed so that they fall within 0 (perfectly ubiquitous expression) and 1 (perfectly tissue-specific expression). If the user wants to obtain the untransformed values given by the chosen tissue-specificity metric, he can set the <code>transform</code> argument to <code>False</code>. The following metrics are affected by changes in this parameter: <code>gini</code>, <code>simpson</code>, <code>shannon_specificity</code>, <code>roku_specificity</code> and <code>zscore</code>.</p>
+<p>For instance, untransformed values obtained with the <code>roku_specificity</code> method fall within 0 and log2(number of tissues).</p>
+<pre><code class="python">tso = tspex.TissueSpecificity(expression_data, 'roku_specificity', log=True)
+tso.tissue_specificity.max()
+</code></pre>
+
+<pre><code>1.0
+</code></pre>
+<pre><code class="python">tso.plot_histogram()
+</code></pre>
+
+<p><img alt="png" src="output_47_0.png" /></p>
+<pre><code class="python">tso = tspex.TissueSpecificity(expression_data, 'roku_specificity', log=True, transform=False)
+tso.tissue_specificity.max()
+</code></pre>
+
+<pre><code>2.3219
+</code></pre>
+<pre><code class="python">tso.plot_histogram()
+</code></pre>
+
+<p><img alt="png" src="output_49_0.png" /></p>
+<h2 id="example-4-the-threshold-parameter-of-the-counts-metric">Example 4: The <code>threshold</code> parameter of the <code>counts</code> metric</h2>
+<p>The <code>counts</code> metric quantifies tissue-specificity as the proportion of tissues above a given expression threshold. Consequently, the <code>threshold</code> parameter directly influences the results obtained when using this method.</p>
+<p>In this example we will first set <code>threshold</code> to 5. Therefore, genes will be considered expressed in any given tissue if their expression is above this value.</p>
+<pre><code class="python">tso = tspex.TissueSpecificity(expression_data, 'counts', threshold=5)
+sum(tso.tissue_specificity &gt;= 0.8)
+</code></pre>
+
+<pre><code>2400
+</code></pre>
+<pre><code class="python">tso.plot_heatmap(0.8, sort_genes=True, use_zscore=True, gene_names=False)
+</code></pre>
+
+<p><img alt="png" src="output_54_0.png" /></p>
+<p>If we increase <code>threshold</code> to 50 fewer genes will be selected.</p>
+<pre><code class="python">tso = tspex.TissueSpecificity(expression_data, 'counts', threshold=50)
+sum(tso.tissue_specificity &gt;= 0.8)
+</code></pre>
+
+<pre><code>1557
+</code></pre>
+<pre><code class="python">tso.plot_heatmap(0.8, sort_genes=True, use_zscore=True, gene_names=False)
+</code></pre>
+
+<p><img alt="png" src="output_57_0.png" /></p></article></div></div></main><footer class="md-footer"><div class="md-footer-nav"><nav class="md-footer-nav__inner md-grid"><a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev"><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-back md-footer-nav__button"></i></div><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Previous</span>Home</span></div></a><a href="../cli/" title="Command-line interface (CLI)" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next"><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Next</span>Command-line interface (CLI)</span></div><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i></div></a></nav></div><div class="md-footer-meta md-typeset"><div class="md-footer-meta__inner md-grid"><div class="md-footer-copyright">powered by <a href="https://www.mkdocs.org">MkDocs</a> and <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div><div class="md-footer-social"><link rel="stylesheet" href="../assets/fonts/font-awesome.css"> <a href="https://github.com/apcamargo/" class="md-footer-social__link fa fa-github-alt"></a> </div></div></div></footer></div><script src="../assets/javascripts/application.b260a35d.js"></script><script>app.initialize({version:"1.0.4",url:{base:".."}})</script></body></html>
