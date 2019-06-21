@@ -12,7 +12,7 @@ tspex is a tissue-specificity calculator tool. It provides both an easy-to-use o
 
 tspex features include:
   - Twelve different tissue-specificity metrics.
-  - Integration with pandas.
+  - Integration with popular data analysis libraries, such as NumPy, SciPy, and pandas.
   - Visualization functions.
   - Support for Jupyter notebooks.
 
@@ -21,13 +21,13 @@ tspex features include:
 1. Using pip:
 
 ```
-$ pip install rnasamba
+$ pip install tspex
 ```
 
 2. Using conda:
 
 ```
-$ conda install -c bioconda rnasamba
+$ conda install -c bioconda tspex
 ```
 
 
