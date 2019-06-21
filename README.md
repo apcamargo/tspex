@@ -1,6 +1,7 @@
 # tspex
 
 - [Overview](#overview)
+- [Documentation](#documentation)
 - [Installation](#installation)
 - [Python API tutorial](#python-api-tutorial)
 - [Command-line interface](#command-line-interface)
@@ -15,6 +16,10 @@ tspex features include:
   - Integration with popular data analysis libraries, such as NumPy, SciPy, and pandas.
   - Visualization functions.
   - Support for Jupyter notebooks.
+
+## Documentation
+
+A complete documentation for tspex can be found at [https://apcamargo.github.io/tspex/](https://apcamargo.github.io/tspex/).
 
 ## Installation
 

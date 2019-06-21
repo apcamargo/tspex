@@ -1,5 +1,5 @@
 site_name: 'tspex Documentation'
-site_url: 'http://apcamargo.github.io/tspex/'
+site_url: 'https://apcamargo.github.io/tspex/'
 site_description: 'Documentation for tspex, a tissue-specificity calculator'
 site_author: 'Antonio Camargo'
 
@@ -8,6 +8,7 @@ repo_url: 'https://github.com/apcamargo/tspex'
 
 nav:
   - Home: 'index.md'
+  - Tissue-specificity metrics: 'metrics.md'
   - Python API: 'python_api.ipynb'
   - Command-line interface (CLI): 'cli.md'
 
@@ -24,6 +25,9 @@ theme:
 
 markdown_extensions:
   - 'admonition'
+  - 'footnotes'
+  - 'codehilite'
+  - 'pymdownx.arithmatex'
 
 plugins:
   - 'search'
@@ -31,6 +35,9 @@ plugins:
 
 extra_css:
   - 'extra.css'
+
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
 
 extra:
   social:

@@ -36,7 +36,7 @@ setup(
     entry_points = {
         'console_scripts': ['tspex=tspex.cli:main'],
     },
-    url='https://github.com/apcamargo/tspex',
+    url='https://apcamargo.github.io/tspex/',
     keywords=['bioinformatics', 'gene expression', 'tissue-specificity', 'transcriptomics'],
     author='Antonio Pedro Camargo',
     author_email='antoniop.camargo@gmail.com',

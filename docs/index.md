@@ -11,6 +11,10 @@ tspex features include:
   - Visualization functions.
   - Support for Jupyter notebooks.
 
+## Source code
+
+tspex is an open source package distributed under the GPL-3.0 license. Its source code can be found in the [GitHub repository](https://github.com/apcamargo/tspex/).
+
 ## Installation
 
 There are two ways to install tspex:
