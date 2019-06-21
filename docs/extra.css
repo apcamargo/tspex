@@ -1,0 +1,11 @@
+.md-typeset {
+    font-size: .7rem;
+}
+
+.md-typeset h1 {
+    font-size: 1.8rem;
+}
+
+.md-header[data-md-state=shadow] {
+    box-shadow: none
+   }

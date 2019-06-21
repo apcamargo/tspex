@@ -1,0 +1,38 @@
+site_name: 'tspex Documentation'
+site_url: 'http://apcamargo.github.io/tspex/'
+site_description: 'Documentation for tspex, a tissue-specificity calculator'
+site_author: 'Antonio Camargo'
+
+repo_name: 'apcamargo/tspex'
+repo_url: 'https://github.com/apcamargo/tspex'
+
+nav:
+  - Home: 'index.md'
+  - Python API: 'python_api.ipynb'
+  - Command-line interface (CLI): 'cli.md'
+
+theme:
+  name: 'material'
+  palette:
+    primary: 'White'
+    accent: 'Light Blue'
+  font:
+    text: 'Nunito Sans'
+    code: 'Fira Mono'
+  logo:
+    icon: 'book'
+
+markdown_extensions:
+  - 'admonition'
+
+plugins:
+  - 'search'
+  - 'mknotebooks'
+
+extra_css:
+  - 'extra.css'
+
+extra:
+  social:
+    - type: 'github-alt'
+      link: 'https://github.com/apcamargo/'
