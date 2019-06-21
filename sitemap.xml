@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>http://apcamargo.github.io/tspex/</loc>
+     <loc>https://apcamargo.github.io/tspex/</loc>
      <lastmod>2019-06-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://apcamargo.github.io/tspex/python_api/</loc>
+     <loc>https://apcamargo.github.io/tspex/metrics/</loc>
      <lastmod>2019-06-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://apcamargo.github.io/tspex/cli/</loc>
+     <loc>https://apcamargo.github.io/tspex/python_api/</loc>
+     <lastmod>2019-06-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://apcamargo.github.io/tspex/cli/</loc>
      <lastmod>2019-06-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
