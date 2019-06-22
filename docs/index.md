@@ -22,11 +22,11 @@ There are two ways to install tspex:
 - Using pip:
 
 ```
-$ pip install rnasamba
+pip install rnasamba
 ```
 
 - Using conda:
 
 ```
-$ conda install -c bioconda rnasamba
+conda install -c bioconda rnasamba
 ```

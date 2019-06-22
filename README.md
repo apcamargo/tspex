@@ -28,13 +28,13 @@ There are two ways to install tspex:
 - Using pip:
 
 ```
-$ pip install tspex
+pip install tspex
 ```
 
 - Using conda:
 
 ```
-$ conda install -c bioconda tspex
+conda install -c bioconda tspex
 ```
 
 
