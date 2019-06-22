@@ -15,6 +15,6 @@
     box-shadow: none
    }
 
-.md-content {
-    margin: 0rem 15rem
+.md-content__inner {
+    margin: 0 4rem
 }
