@@ -54,7 +54,8 @@ usage: tspex [-h] [-l] [-d] [-t THRESHOLD] input_file output_file method
 Compute gene tissue-specificity from an expression matrix and save the output.
 
 positional arguments:
-  input_file            Expression matrix file in the TSV or CSV formats.
+  input_file            Expression matrix file in the TSV, CSV or Excel
+                        formats.
   output_file           Output TSV file containing tissue-specificity values.
   method                Tissue-specificity metric. Allowed values are:
                         "counts", "tau", "gini", "simpson",

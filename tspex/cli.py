@@ -32,7 +32,10 @@ import tspex
 def tspex_cli(input_file, output_file, method, log, disable_transformation, threshold):
     """Compute gene tissue-specificity from a expression matrix file and save an output file."""
     transform = not disable_transformation
-    expression_matrix = pd.read_csv(input_file, index_col=0, header=0, sep=None, engine='python')
+    if input_file.rsplit('.', 1)[1].lower() in ['xls', 'xlsx']:
+        expression_matrix = pd.read_excel(input_file, index_col=0, header=0)
+    else:
+        expression_matrix = pd.read_csv(input_file, index_col=0, header=0, sep=None, engine='python')
     tissue_specificity = tspex.TissueSpecificity(
         expression_matrix, method, log, transform=transform, threshold=threshold)
     tissue_specificity.tissue_specificity.to_csv(output_file, sep='\t')
@@ -45,7 +48,7 @@ def main():
         description='Compute gene tissue-specificity from an expression matrix and save the output.',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('input_file',
-                        help='Expression matrix file in the TSV or CSV formats.')
+                        help='Expression matrix file in the TSV, CSV or Excel formats.')
     parser.add_argument('output_file',
                         help='Output TSV file containing tissue-specificity values.')
     parser.add_argument(

@@ -25,15 +25,15 @@ from setuptools import setup, find_packages
 
 setup(
     name='tspex',
-    version='0.5.1',
+    version='0.6.0',
     packages=find_packages(),
     license='GNU General Public License v3.0',
     description='A Python package for calculating tissue-specificity metrics for gene expression.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    install_requires=['matplotlib >= 2.2', 'numpy', 'pandas >= 0.23'],
-    python_requires= '>=3',
-    entry_points = {
+    install_requires=['matplotlib >= 2.2', 'numpy', 'pandas >= 0.23', 'xlrd >= 1.1.0'],
+    python_requires='>=3',
+    entry_points={
         'console_scripts': ['tspex=tspex.cli:main'],
     },
     url='https://apcamargo.github.io/tspex/',
