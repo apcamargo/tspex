@@ -13,8 +13,8 @@
 
 .md-header[data-md-state=shadow] {
     box-shadow: none
-}
+   }
 
 .md-content__inner {
-    margin: 0 4rem 3rem 4rem
+    margin: 0 4rem
 }
