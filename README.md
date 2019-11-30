@@ -1,5 +1,6 @@
 # tspex
 
+
 - [Overview](#overview)
 - [Documentation](#documentation)
 - [Installation](#installation)
@@ -98,3 +99,12 @@ tspex --threshold 10 gene_expression.tsv tspex_counts.tsv counts
 ```
 tspex --disable_transformation gene_expression.tsv tspex_zscore.tsv zscore
 ```
+
+
+## Cite tspex
+
+If you use tspex in your research, it would be appreciated if you could cite it.
+
+[![DOI](https://zenodo.org/badge/172384291.svg)](https://zenodo.org/badge/latestdoi/172384291)
+
+> Camargo, Antonio P., "*tspex: tissue-specificity calculator*" (2019). doi:10.5281/zenodo.3558708
