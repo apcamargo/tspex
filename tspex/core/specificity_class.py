@@ -28,11 +28,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from tspex.core.specificity_functions import (counts, gini, js_specificity,
-                                              js_specificity_dpm,
-                                              roku_specificity,
-                                              shannon_specificity, simpson,
-                                              spm, spm_dpm, tau, tsi, zscore)
+from tspex.core.specificity_functions import (
+    counts,
+    gini,
+    js_specificity,
+    js_specificity_dpm,
+    roku_specificity,
+    shannon_specificity,
+    simpson,
+    spm,
+    spm_dpm,
+    tau,
+    tsi,
+    zscore,
+)
 
 
 class TissueSpecificity:
@@ -86,18 +95,24 @@ class TissueSpecificity:
             'spm': spm,
             'spm_dpm': spm_dpm,
             'js_specificity': js_specificity,
-            'js_specificity_dpm': js_specificity_dpm
+            'js_specificity_dpm': js_specificity_dpm,
         }
-        self.expression_data = expression_data.select_dtypes(include='number').astype(float)
+        self.expression_data = expression_data.select_dtypes(include='number').astype(
+            float
+        )
         if self.expression_data.shape[1] < expression_data.shape[1]:
-            warnings.warn('The input DataFrame contains non-numerical columns. These columns were removed.')
+            warnings.warn(
+                'The input DataFrame contains non-numerical columns. These columns were removed.'
+            )
         if np.any(self.expression_data < 0):
             raise ValueError('Negative expression values are not allowed.')
         if self.expression_data.index.duplicated().any():
-            warnings.warn('There are duplicated gene names in the input DataFrame index. Please, correct this issue.')
+            warnings.warn(
+                'There are duplicated gene names in the input DataFrame index. Please, correct this issue.'
+            )
             return None
         if log:
-            self.expression_data = self.expression_data.apply(lambda x: np.log(x+1))
+            self.expression_data = self.expression_data.apply(lambda x: np.log(x + 1))
         self._method = str(method)
         self._transform = kwargs.pop('transform', True)
         self._threshold = kwargs.pop('threshold', 0)
@@ -106,12 +121,17 @@ class TissueSpecificity:
     def _compute_tissue_specificity(self):
         func = self._function_dictionary[self._method]
         if self._method in ['tsi', 'zscore', 'spm', 'js_specificity']:
-            tissue_specificity = self.expression_data.apply(func, axis=1, result_type='broadcast',
-                                                            transform=self._transform)
+            tissue_specificity = self.expression_data.apply(
+                func, axis=1, result_type='broadcast', transform=self._transform
+            )
         else:
-            tissue_specificity = self.expression_data.apply(func, axis=1, result_type='reduce',
-                                                            transform=self._transform,
-                                                            threshold=self._threshold)
+            tissue_specificity = self.expression_data.apply(
+                func,
+                axis=1,
+                result_type='reduce',
+                transform=self._transform,
+                threshold=self._threshold,
+            )
         tissue_specificity = tissue_specificity.round(4)
         return tissue_specificity
 
@@ -142,8 +162,17 @@ class TissueSpecificity:
             ax.set_xlabel(self._method)
             ax.set_title('Histogram of {} values'.format(self._method), loc='left')
 
-    def plot_heatmap(self, threshold, sort_genes=False, use_zscore=False, gene_names=True,
-                     tissue_names=True, cmap='viridis', size=(6, 4), dpi=75):
+    def plot_heatmap(
+        self,
+        threshold,
+        sort_genes=False,
+        use_zscore=False,
+        gene_names=True,
+        tissue_names=True,
+        cmap='viridis',
+        size=(6, 4),
+        dpi=75,
+    ):
         """
         Plot a heatmap of the expression of genes with tissue-specificity over a
         given a threshold. The threshold should be in the [0,1] range. If the
@@ -177,13 +206,17 @@ class TissueSpecificity:
             ts_data = self.tissue_specificity
         expr_data = self.expression_data.loc[ts_data >= threshold]
         if not len(expr_data):
-            warnings.warn('There is no gene with tissue-specificity value above the threshold.')
+            warnings.warn(
+                'There is no gene with tissue-specificity value above the threshold.'
+            )
             return None
         if sort_genes:
             sorted_index = expr_data.idxmax(axis=1).sort_values().index
             expr_data = expr_data.reindex(sorted_index)
         if use_zscore:
-            expr_data = expr_data.apply(zscore, axis=1, result_type='broadcast', transform=False)
+            expr_data = expr_data.apply(
+                zscore, axis=1, result_type='broadcast', transform=False
+            )
         fig, ax = plt.subplots(figsize=size, dpi=dpi, constrained_layout=True)
         im = ax.imshow(expr_data, cmap=cmap, aspect='auto')
         ax.set_ylabel('Genes')

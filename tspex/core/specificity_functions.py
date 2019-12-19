@@ -78,7 +78,7 @@ def counts(vector, **kwargs):
         if cts == 0:
             return 0.0
         else:
-            cts_transformed = (1-(cts/n)) * (n/(n-1))
+            cts_transformed = (1 - (cts / n)) * (n / (n - 1))
             return cts_transformed
 
 
@@ -110,7 +110,7 @@ def tau(vector, **kwargs):
     else:
         n = len(vector)
         vector_r = vector / np.max(vector)
-        tau_index = np.sum(1-vector_r) / (n-1)
+        tau_index = np.sum(1 - vector_r) / (n - 1)
         return tau_index
 
 
@@ -146,10 +146,10 @@ def gini(vector, **kwargs):
     else:
         vector = np.sort(vector)
         n = len(vector)
-        index = np.arange(1, n+1)
-        gini_coefficient = (np.sum((2*index-n-1)*vector)) / (n*np.sum(vector))
+        index = np.arange(1, n + 1)
+        gini_coefficient = (np.sum((2 * index - n - 1) * vector)) / (n * np.sum(vector))
         if transform:
-            transformed_gini_coefficient = gini_coefficient * (n/(n-1))
+            transformed_gini_coefficient = gini_coefficient * (n / (n - 1))
             return transformed_gini_coefficient
         else:
             return gini_coefficient
@@ -184,10 +184,10 @@ def simpson(vector, **kwargs):
         return 0.0
     else:
         p = vector / np.sum(vector)
-        simpson_index = np.sum(p**2)
+        simpson_index = np.sum(p ** 2)
         if transform:
             min_simpson = 1 / len(vector)
-            transformed_simpson_index = (simpson_index-min_simpson) / (1-min_simpson)
+            transformed_simpson_index = (simpson_index - min_simpson) / (1 - min_simpson)
             return transformed_simpson_index
         else:
             return simpson_index
@@ -339,10 +339,10 @@ def zscore(vector, **kwargs):
     if std == 0:
         return np.zeros(n)
     else:
-        zs = (vector-np.mean(vector)) / std
+        zs = (vector - np.mean(vector)) / std
         if transform:
-            max_zs = (n-1) / np.sqrt(n)
-            zs_transformed = (zs+max_zs) / (2*max_zs)
+            max_zs = (n - 1) / np.sqrt(n)
+            zs_transformed = (zs + max_zs) / (2 * max_zs)
             return zs_transformed
         else:
             return zs
@@ -378,7 +378,7 @@ def spm(vector, **kwargs):
         if vector[i] == 0:
             spm_vector.append(0)
         else:
-            spm_i = (vector[i]**2) / (np.linalg.norm(vector)*vector[i])
+            spm_i = (vector[i] ** 2) / (np.linalg.norm(vector) * vector[i])
             spm_vector.append(spm_i)
     return np.array(spm_vector)
 
