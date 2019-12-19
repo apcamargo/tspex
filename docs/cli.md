@@ -24,6 +24,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
+  --version             show program's version number and exit
   -l, --log             Log-transform expression values. (default: False)
   -d, --disable_transformation
                         By default, tissue-specificity values are transformed
