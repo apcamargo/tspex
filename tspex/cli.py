@@ -65,6 +65,7 @@ def main():
         description='Compute gene tissue-specificity from an expression matrix and save the output.',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
+    parser.add_argument('--version', action='version', version='%(prog)s 0.6.1')
     parser.add_argument(
         'input_file', help='Expression matrix file in the TSV, CSV or Excel formats.'
     )
