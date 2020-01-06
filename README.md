@@ -18,6 +18,10 @@ tspex features include:
   - Visualization functions.
   - Support for Jupyter notebooks.
 
+## Web version
+
+tspex can be used through a web interface that is freely available online at [https://tspex.lge.ibi.unicamp.br/](https://tspex.lge.ibi.unicamp.br/). The source code of the web app can be found at [https://github.com/apcamargo/tspex-webapp/](https://github.com/apcamargo/tspex-webapp/).
+
 ## Documentation
 
 A complete documentation for tspex can be found at [https://apcamargo.github.io/tspex/](https://apcamargo.github.io/tspex/).
