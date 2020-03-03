@@ -32,5 +32,5 @@ pip install tspex
 - Using conda:
 
 ```
-conda install -c bioconda tspex
+conda install -c conda-forge -c bioconda tspex
 ```
