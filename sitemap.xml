@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://apcamargo.github.io/tspex/</loc>
-     <lastmod>2020-01-06</lastmod>
+     <lastmod>2020-03-02</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
+    </url><url>
      <loc>https://apcamargo.github.io/tspex/metrics/</loc>
-     <lastmod>2020-01-06</lastmod>
+     <lastmod>2020-03-02</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
+    </url><url>
      <loc>https://apcamargo.github.io/tspex/python_api/</loc>
-     <lastmod>2020-01-06</lastmod>
+     <lastmod>2020-03-02</lastmod>
      <changefreq>daily</changefreq>
-    </url>
-    <url>
+    </url><url>
      <loc>https://apcamargo.github.io/tspex/cli/</loc>
-     <lastmod>2020-01-06</lastmod>
+     <lastmod>2020-03-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
