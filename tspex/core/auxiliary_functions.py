@@ -46,8 +46,7 @@ def dpm(vector):
     """
 
     n = len(vector)
-    dispersion_measure = np.std(vector, ddof=1) * np.sqrt(n)
-    return dispersion_measure
+    return np.std(vector, ddof=1) * np.sqrt(n)
 
 
 def tukey_biweight(vector, c=5, epsilon=1e-4):
@@ -76,8 +75,7 @@ def tukey_biweight(vector, c=5, epsilon=1e-4):
     i = np.abs(u) > 1
     w = (1 - u ** 2) ** 2
     w[i] = 0
-    tbi = np.sum(w * vector) / np.sum(w)
-    return tbi
+    return np.sum(w * vector) / np.sum(w)
 
 
 def entropy(vector):
@@ -106,8 +104,7 @@ def entropy(vector):
     else:
         p = vector / np.sum(vector)
         p = p[np.nonzero(p)[0]]
-        h = -1 * np.dot(p, np.log2(p))
-        return h
+        return -1 * np.dot(p, np.log2(p))
 
 
 def roku(vector):
@@ -136,8 +133,7 @@ def roku(vector):
 
     tbi = tukey_biweight(vector)
     vector_p = np.abs(vector - tbi)
-    h = entropy(vector_p)
-    return h
+    return entropy(vector_p)
 
 
 def js_distance(p, q):
@@ -168,5 +164,4 @@ def js_distance(p, q):
     left = entropy((p + q) / 2)
     right = (entropy(p) + entropy(q)) / 2
     js = left - right
-    jsd = np.sqrt(js)
-    return jsd
+    return np.sqrt(js)
