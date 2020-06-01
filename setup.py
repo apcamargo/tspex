@@ -25,7 +25,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='tspex',
-    version='0.6.1',
+    version='0.6.2',
     packages=find_packages(),
     license='GNU General Public License v3.0',
     description='A Python package for calculating tissue-specificity metrics for gene expression.',
