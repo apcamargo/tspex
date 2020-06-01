@@ -105,7 +105,7 @@ def entropy(vector):
         return np.log2(n)
     else:
         p = vector / np.sum(vector)
-        p = p[np.nonzero(p)[0]]
+        p = p[p!=0]
         h = -1 * np.dot(p, np.log2(p))
         return h
 
