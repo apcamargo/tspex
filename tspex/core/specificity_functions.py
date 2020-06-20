@@ -110,7 +110,7 @@ def tau(vector, **kwargs):
     else:
         n = len(vector)
         if n == 1:
-            raise ValueError("The input vector should contain more than one element.")
+            raise ZeroDivisionError("The input vector should contain more than one element.")
         vector_r = vector / np.max(vector)
         tau_index = np.sum(1 - vector_r) / (n - 1)
         return tau_index
