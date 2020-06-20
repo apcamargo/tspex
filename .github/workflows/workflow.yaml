@@ -17,6 +17,8 @@ jobs:
       uses: actions/setup-python@v1.1.1
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Install wheel and pytest
+      run: pip install pytest pytest-cov wheel
     - name: Build tspex
       run: python setup.py sdist bdist_wheel
       shell: bash
@@ -24,9 +26,7 @@ jobs:
       run: pip install dist/*.whl
       shell: bash
     - name: Test
-      run: |
-        pip install pytest
-        pytest
+      run: pytest
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
