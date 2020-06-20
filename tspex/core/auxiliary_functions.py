@@ -46,8 +46,11 @@ def dpm(vector):
     """
 
     n = len(vector)
-    dispersion_measure = np.std(vector, ddof=1) * np.sqrt(n)
-    return dispersion_measure
+    if n == 1:
+        return 0.0
+    else:
+        dispersion_measure = np.std(vector, ddof=1) * np.sqrt(n)
+        return dispersion_measure
 
 
 def tukey_biweight(vector, c=5, epsilon=1e-4):

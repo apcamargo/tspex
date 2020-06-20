@@ -110,10 +110,11 @@ def tau(vector, **kwargs):
     else:
         n = len(vector)
         if n == 1:
-            raise ZeroDivisionError("The input vector should contain more than one element.")
-        vector_r = vector / np.max(vector)
-        tau_index = np.sum(1 - vector_r) / (n - 1)
-        return tau_index
+            return 0.0
+        else:
+            vector_r = vector / np.max(vector)
+            tau_index = np.sum(1 - vector_r) / (n - 1)
+            return tau_index
 
 
 def gini(vector, **kwargs):
@@ -148,13 +149,16 @@ def gini(vector, **kwargs):
     else:
         vector = np.sort(vector)
         n = len(vector)
-        index = np.arange(1, n + 1)
-        gini_coefficient = (np.sum((2 * index - n - 1) * vector)) / (n * np.sum(vector))
-        if transform:
-            transformed_gini_coefficient = gini_coefficient * (n / (n - 1))
-            return transformed_gini_coefficient
+        if n == 1:
+            return 0.0
         else:
-            return gini_coefficient
+            index = np.arange(1, n + 1)
+            gini_coefficient = (np.sum((2 * index - n - 1) * vector)) / (n * np.sum(vector))
+            if transform:
+                transformed_gini_coefficient = gini_coefficient * (n / (n - 1))
+                return transformed_gini_coefficient
+            else:
+                return gini_coefficient
 
 
 def simpson(vector, **kwargs):
@@ -185,14 +189,18 @@ def simpson(vector, **kwargs):
     if not np.any(vector):
         return 0.0
     else:
-        p = vector / np.sum(vector)
-        simpson_index = np.sum(p ** 2)
-        if transform:
-            min_simpson = 1 / len(vector)
-            transformed_simpson_index = (simpson_index - min_simpson) / (1 - min_simpson)
-            return transformed_simpson_index
+        n = len(vector)
+        if n == 1:
+            return 0.0
         else:
-            return simpson_index
+            p = vector / np.sum(vector)
+            simpson_index = np.sum(p ** 2)
+            if transform:
+                min_simpson = 1 / len(vector)
+                transformed_simpson_index = (simpson_index - min_simpson) / (1 - min_simpson)
+                return transformed_simpson_index
+            else:
+                return simpson_index
 
 
 def shannon_specificity(vector, **kwargs):
@@ -227,12 +235,15 @@ def shannon_specificity(vector, **kwargs):
         return 0.0
     else:
         n = len(vector)
-        ss = np.log2(n) - entropy(vector)
-        if transform:
-            ss_transformed = ss / np.log2(n)
-            return ss_transformed
+        if n == 1:
+            return 0.0
         else:
-            return ss
+            ss = np.log2(n) - entropy(vector)
+            if transform:
+                ss_transformed = ss / np.log2(n)
+                return ss_transformed
+            else:
+                return ss
 
 
 def roku_specificity(vector, **kwargs):
@@ -271,12 +282,15 @@ def roku_specificity(vector, **kwargs):
         return 0.0
     else:
         n = len(vector)
-        rs = np.log2(n) - roku(vector)
-        if transform:
-            rs_transformed = rs / np.log2(n)
-            return rs_transformed
+        if n == 1:
+            return 0.0
         else:
-            return rs
+            rs = np.log2(n) - roku(vector)
+            if transform:
+                rs_transformed = rs / np.log2(n)
+                return rs_transformed
+            else:
+                return rs
 
 
 def tsi(vector, **kwargs):
@@ -303,10 +317,14 @@ def tsi(vector, **kwargs):
     """
 
     if not np.any(vector):
-        return 0.0
+        return np.array([0.0])
     else:
-        tissue_specificity_index = vector / np.sum(vector)
-        return tissue_specificity_index
+        n = len(vector)
+        if n == 1:
+            return np.array([0.0])
+        else:
+            tissue_specificity_index = vector / np.sum(vector)
+            return tissue_specificity_index
 
 
 def zscore(vector, **kwargs):
@@ -337,17 +355,20 @@ def zscore(vector, **kwargs):
 
     transform = kwargs.pop('transform', True)
     n = len(vector)
-    std = np.std(vector, ddof=1)
-    if std == 0:
-        return np.zeros(n)
+    if n == 1:
+        return np.array([0.0])
     else:
-        zs = (vector - np.mean(vector)) / std
-        if transform:
-            max_zs = (n - 1) / np.sqrt(n)
-            zs_transformed = (zs + max_zs) / (2 * max_zs)
-            return zs_transformed
+        std = np.std(vector, ddof=1)
+        if std == 0:
+            return np.zeros(n)
         else:
-            return zs
+            zs = (vector - np.mean(vector)) / std
+            if transform:
+                max_zs = (n - 1) / np.sqrt(n)
+                zs_transformed = (zs + max_zs) / (2 * max_zs)
+                return zs_transformed
+            else:
+                return zs
 
 
 def spm(vector, **kwargs):
@@ -375,14 +396,17 @@ def spm(vector, **kwargs):
     """
 
     n = len(vector)
-    spm_vector = []
-    for i in range(n):
-        if vector[i] == 0:
-            spm_vector.append(0)
-        else:
-            spm_i = (vector[i] ** 2) / (np.linalg.norm(vector) * vector[i])
-            spm_vector.append(spm_i)
-    return np.array(spm_vector)
+    if n == 1:
+        return np.array([0.0])
+    else:
+        spm_vector = []
+        for i in range(n):
+            if vector[i] == 0:
+                spm_vector.append(0)
+            else:
+                spm_i = (vector[i] ** 2) / (np.linalg.norm(vector) * vector[i])
+                spm_vector.append(spm_i)
+        return np.array(spm_vector)
 
 
 def spm_dpm(vector, **kwargs):
@@ -438,16 +462,19 @@ def js_specificity(vector, **kwargs):
     """
 
     n = len(vector)
-    js_vector = []
-    for i in range(n):
-        if vector[i] == 0:
-            js_vector.append(0)
-        else:
-            vector_i = np.zeros(n)
-            vector_i[i] = vector[i]
-            js_i = 1 - js_distance(vector, vector_i)
-            js_vector.append(js_i)
-    return np.array(js_vector)
+    if n == 1:
+        return np.array([0.0])
+    else:
+        js_vector = []
+        for i in range(n):
+            if vector[i] == 0:
+                js_vector.append(0)
+            else:
+                vector_i = np.zeros(n)
+                vector_i[i] = vector[i]
+                js_i = 1 - js_distance(vector, vector_i)
+                js_vector.append(js_i)
+        return np.array(js_vector)
 
 
 def js_specificity_dpm(vector, **kwargs):
