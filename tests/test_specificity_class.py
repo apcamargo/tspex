@@ -47,8 +47,10 @@ non_numerical_test_data.loc[:, 'non_numerical'] = [
 def test_specificity_class_negative_values():
     pytest.raises(ValueError, TissueSpecificity, negative_test_data, method='gini')
 
+
 def test_specificity_class_duplicated_genes():
     pytest.raises(ValueError, TissueSpecificity, duplicated_test_data, method='gini')
+
 
 def test_specificity_class_plot_histogram():
     # General scoring metric
@@ -59,6 +61,7 @@ def test_specificity_class_plot_histogram():
     assert (
         TissueSpecificity(non_numerical_test_data, method='spm').plot_histogram() is None
     )
+
 
 def test_specificity_class_plot_heatmap():
     # General scoring metric
@@ -111,6 +114,7 @@ def test_specificity_class_plot_heatmap():
         is None
     )
 
+
 def test_specificity_class_non_numerical_column():
     assert np.all(
         TissueSpecificity(
@@ -131,6 +135,7 @@ def test_specificity_class_non_numerical_column():
             ]
         )
     )
+
 
 def test_specificity_class_general_scoring():
     assert np.all(
@@ -171,6 +176,7 @@ def test_specificity_class_general_scoring():
             ]
         )
     )
+
 
 def test_specificity_class_individualized_scoring():
     # transform=False and log=False

@@ -107,7 +107,9 @@ class TissueSpecificity:
         if np.any(self.expression_data < 0):
             raise ValueError('Negative expression values are not allowed.')
         if self.expression_data.index.duplicated().any():
-            raise ValueError('There are duplicated gene names in the input DataFrame index. Please, correct this issue.')
+            raise ValueError(
+                'There are duplicated gene names in the input DataFrame index. Please, correct this issue.'
+            )
         if log:
             self.expression_data = self.expression_data.apply(lambda x: np.log(x + 1))
         self._method = str(method)
