@@ -43,7 +43,7 @@ Although methods to quantify gene tissue-specificity have been extensively used 
 
 # Implementation
 
-tspex is implemented as a Python package and it can be used locally through a Python Application Programming Interface (API), command-line interface or web version. Local installation of tspex is as easy as calling it with pip or conda and requires few dependencies. Refer to the tspex GitHub repository for the most up-to-date source code, dependency details and instructions. An open source web interface (Figure 1A) built with Flask and deployed using Docker containers can be accessed at https://tspex.lge.ibi.unicamp.br/ and its source code is available in https://github.com/apcamargo/tspex-webapp/.
+tspex is implemented as a Python package and it can be used locally through a Python Application Programming Interface (API), command-line interface or web version. Local installation of tspex is as easy as calling it with pip or conda and requires few dependencies. Refer to the tspex GitHub repository for the most up-to-date source code, dependency details and instructions. An open source web interface (Figure 1a) built with Flask and deployed using Docker containers can be accessed at https://tspex.lge.ibi.unicamp.br/ and its source code is available in https://github.com/apcamargo/tspex-webapp/.
 
 tspex provides twelve distinct tissue-specificity metrics, which differ in their assumptions, scale and properties. Broadly, these metrics can be divided into two groups [@kryuchkova2017benchmark]: (1) general scoring metrics, that summarize in a single value how tissue-specific or ubiquitous is a gene across all tissues and (2) individualized scoring metrics that quantify how specific is the expression of each gene to each tissue.
 
@@ -51,7 +51,7 @@ The general scoring metrics provided by tspex are: Counts [@duret2000determinant
 
 As input, tspex requires an expression matrix (TSV, CSV or Excel formats) in any appropriate unit, such as TPM, FPKM or CPM. Optionally, tspex allows the expression values to be log-transformed before computation of tissue-specificity, which reduces the dependency between expression variance and expression level, improving the reliability of tissue-specificity measurements [@kryuchkova2017benchmark]. Internally, expression data and the tissue-specificity values are stored in a Python object and can be easily accessed for further investigation through the Python API.
 
-Finally, the tspex package provides built-in functions for data visualization. Specifically, the user can plot histograms of tissue-specificity values (Figure 1B) and heatmaps of the expression of genes whose tissue-specificity is above a chosen value (Figure 1C). These visualizations allow quick inspection of the results and can be helpful for deciding threshold values.
+Finally, the tspex package provides built-in functions for data visualization. Specifically, the user can plot histograms of tissue-specificity values (Figure 1b) and heatmaps of the expression of genes whose tissue-specificity is above a chosen value (Figure 1c). These visualizations allow quick inspection of the results and can be helpful for deciding threshold values.
 
 # Results
 
