@@ -1,7 +1,13 @@
 # tspex
 
+[![DOI](https://img.shields.io/badge/DOI-10.21203%2Frs.3.rs--51998%2Fv1-red)](https://10.21203/rs.3.rs-51998/v1)
+[![PyPI](https://img.shields.io/pypi/v/tspex.svg?label=PyPI&color=green)](https://pypi.python.org/pypi/tspex)
+[![Conda](https://img.shields.io/conda/vn/bioconda/tspex.svg?label=Conda&color=green)](https://anaconda.org/bioconda/tspex)
+[![PyPI downloads](https://img.shields.io/pypi/dm/tspex?label=PyPI%20downloads&color=blue)](https://pypi.python.org/pypi/tspex)
+[![Conda downloads](https://img.shields.io/conda/dn/bioconda/tspex.svg?label=Conda%20downloads&color=blue)](https://anaconda.org/bioconda/tspex)
 
 - [Overview](#overview)
+- [Citation](#citation)
 - [Documentation](#documentation)
 - [Installation](#installation)
 - [Python API tutorial](#python-api-tutorial)
@@ -17,6 +23,13 @@ tspex features include:
   - Integration with popular data analysis libraries, such as NumPy, SciPy, and pandas.
   - Visualization functions.
   - Support for Jupyter notebooks.
+
+
+## Citation
+
+If you use tspex in your research, it would be appreciated if you could cite it.
+
+> Camargo, A. P., Vasconcelos, A. A., Fiamenghi, M. B., Pereira, G. A. G. & Carazzolle, M. F.. "[tspex: a tissue-specificity calculator for gene expression data](https://www.researchsquare.com/article/rs-51998/v1)" *Preprint available at Research Square* (2020).
 
 ## Web version
 
@@ -104,12 +117,3 @@ tspex --threshold 10 gene_expression.tsv tspex_counts.tsv counts
 ```
 tspex --disable_transformation gene_expression.tsv tspex_zscore.tsv zscore
 ```
-
-
-## Cite tspex
-
-If you use tspex in your research, it would be appreciated if you could cite it.
-
-[![DOI](https://zenodo.org/badge/172384291.svg)](https://zenodo.org/badge/latestdoi/172384291)
-
-> Camargo, Antonio P., "*tspex: tissue-specificity calculator*" (2019). doi:10.5281/zenodo.3558708
