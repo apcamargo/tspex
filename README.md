@@ -1,6 +1,6 @@
 # tspex
 
-[![DOI](https://img.shields.io/badge/DOI-10.21203%2Frs.3.rs--51998%2Fv1-red)](https://10.21203/rs.3.rs-51998/v1)
+[![DOI](https://img.shields.io/badge/DOI-10.21203%2Frs.3.rs--51998%2Fv1-red)](https://doi.org/10.21203/rs.3.rs-51998/v1)
 [![PyPI](https://img.shields.io/pypi/v/tspex.svg?label=PyPI&color=green)](https://pypi.python.org/pypi/tspex)
 [![Conda](https://img.shields.io/conda/vn/bioconda/tspex.svg?label=Conda&color=green)](https://anaconda.org/bioconda/tspex)
 [![PyPI downloads](https://img.shields.io/pypi/dm/tspex?label=PyPI%20downloads&color=blue)](https://pypi.python.org/pypi/tspex)
