@@ -217,7 +217,7 @@ class TissueSpecificity:
                 zscore, axis=1, result_type='broadcast', transform=False
             )
         fig, ax = plt.subplots(figsize=size, dpi=dpi, constrained_layout=True)
-        im = ax.imshow(expr_data, cmap=cmap, aspect='auto')
+        im = ax.imshow(expr_data, cmap=cmap, aspect='auto', interpolation='none')
         ax.set_ylabel('Genes')
         ax.set_xlabel('Tissues')
         ax.set_yticks(np.arange(0, len(expr_data.index), 1))
